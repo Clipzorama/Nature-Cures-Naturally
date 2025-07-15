@@ -4,7 +4,7 @@ import { cn } from "../lib/utlis"
 
 
 export const LightSwitch = ({ className = "" }) => {
-    const {theme, toggleTheme} = enableTheme();
+    const { theme, toggleTheme } = enableTheme();
 
     return (
         <button onClick={toggleTheme} className={cn("transition-colors duration-300 focus:outline-hidden",
