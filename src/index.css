@@ -1,3 +1,5 @@
+	/* Where the CSS variables live. Controls values at runtime, responds to themes (e.g. .dark class). */
+
 @import "tailwindcss";
 
 @layer base {
@@ -39,16 +41,13 @@
         }
     }
 
-    * {
-        @apply border-border;
-    }
 
     html {
         @apply scroll-smooth;
     }
 
     body {
-        @apply bg-background text-foreground transition-colors duration-300;
+        @apply transition-colors duration-300;
         font-feature-settings: "rlig" 1, "calt" 1;
     }
 }
