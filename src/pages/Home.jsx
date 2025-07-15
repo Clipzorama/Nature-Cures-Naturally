@@ -3,10 +3,11 @@ import { LightSwitch } from '@/components/LightSwitch';
 
 function Home() {
     return (
-        <div className='min-h-screen bg-background text-foreground overflow-x-hidden'>
+        <div className='min-h-screen bg-background text-primary overflow-x-hidden'>
             {/* Navbar  */}
             <LightSwitch />
             <NavBar />
+            <p className="text-lg">If you see this with a background color — it works</p>
         </div>
     );
 }

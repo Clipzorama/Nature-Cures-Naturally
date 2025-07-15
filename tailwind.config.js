@@ -12,12 +12,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        card: 'hsl(var(--card))',
-        primary: 'hsl(var(--primary))',
+        'background': 'hsl(var(--background))',
+        'foreground': 'hsl(var(--foreground))',
+        'card': 'hsl(var(--card))',
+        'primary': 'hsl(var(--primary))',
         'primary-foreground': 'hsl(var(--primary-foreground))',
-        border: 'hsl(var(--border))',
+        'border': 'hsl(var(--border))',
       },
       keyframes: {
         'fade-in': {
