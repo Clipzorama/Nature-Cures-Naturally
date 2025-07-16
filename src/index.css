@@ -40,13 +40,13 @@
     } 
 
     .dark {
-        --background: 222 47% 4%;
+        --background: 150 20% 25%;
         --foreground: 213 31% 91%;
 
-        --card: 222 47% 8%;
-        --primary: 0 56% 35%;
+        --card: 119 19% 42%;
+        --primary: 46 15% 83%;
         --primary-foreground: 213 31% 91%;
-        --border: 217 33% 20%;
+        --border: 82 20% 62%;
     }
 
     @keyframes fade-in {
