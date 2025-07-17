@@ -1,8 +1,5 @@
 import { useState } from "react";
 
-
-
-
 // will have to change this soon
 const navItems = [
     {name: "Home", href: "#hero"},
