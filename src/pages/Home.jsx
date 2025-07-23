@@ -5,9 +5,9 @@ function Home() {
     return (
         <div className='min-h-screen bg-background text-primary overflow-x-hidden'>
             {/* Navbar  */}
-            <LightSwitch />
+            <LightSwitch className='fixed right-20'/>
+            
             <NavBar />
-            <p className="text-lg">If you see this with a background color — it works</p>
         </div>
     );
 }
