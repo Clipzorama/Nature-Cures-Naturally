@@ -40,7 +40,7 @@
     } 
 
     .dark {
-        --background: 150 20% 25%;
+        --background: 88 38% 15%;
         --foreground: 213 31% 91%;
 
         --card: 119 19% 42%;
@@ -69,4 +69,25 @@
         @apply transition-colors duration-300;
         font-feature-settings: "rlig" 1, "calt" 1;
     }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >= 640px) {
+    max-width: 640px;
+  }
+  @media (width >= 768px) {
+    max-width: 768px;
+  }
+  @media (width >= 1024px) {
+    max-width: 1024px;
+  }
+  @media (width >= 1280px) {
+    max-width: 1280px;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
 }
