@@ -13,7 +13,7 @@ export const LightSwitch = ({ className = "" }) => {
                 className
             )}
         >
-            {theme === "dark" ? <Moon className="w-6 h-6 text-blue-900 cursor-pointer" /> : <Sun className="w-6 h-6 text-yellow-300 cursor-pointer" />}
+            {theme === "dark" ? <Moon className="w-6 h-6 text-primary cursor-pointer" /> : <Sun className="w-6 h-6 text-primary cursor-pointer" />}
             
 
         </button>
