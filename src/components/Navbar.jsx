@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LightSwitch } from "@/components/LightSwitch.jsx";
 import { Menu, X } from "lucide-react";
 import NCC from "@/assets/logo.png"
+import { cn } from "@/lib/utlis"
+
 
 // will have to change this soon and add some new stuff
 
@@ -39,8 +41,35 @@ export const NavBar = () => {
                         </a>
                     ))}
                 </div>
-                
 
+                {/* for smaller devices */}
+
+                <button
+                onClick={() => setMenuOpen((prev) => !prev)}
+                className="md:hidden p-2 text-foreground z-50"
+                aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}>
+                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+                <div className={cn("fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
+                                       "transition-all duration-300 md:hidden",
+                                       isMenuOpen 
+                                       ? "opacity-100 pointer-events-auto" 
+                                       : "opacity-0 pointer-events-none"
+                    )}>
+                    <div className="flex flex-col space-y-8 text-xl items-center">
+                            {navItems.map((item, key) => (
+                                <a key={key} 
+                                href={item.href} 
+                                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                onClick={() => setMenuOpen(false)}>
+                                
+                                    {item.name}
+                                </a>
+                            ))}
+                            <LightSwitch className="block md:hidden self-center mt-2"/>
+                    </div>
+
+                </div>
             </div>
         </nav>
     );
