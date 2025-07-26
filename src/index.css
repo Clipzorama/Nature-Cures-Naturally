@@ -1,6 +1,7 @@
 	/* Where the CSS variables live. Controls values at runtime, responds to themes (e.g. .dark class). */
 
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @theme {
     --color-border: hsl(var(--border));
@@ -40,7 +41,7 @@
     } 
 
     .dark {
-        --background: 88 38% 15%;
+        --background: 130 26% 9%;
         --foreground: 213 31% 91%;
 
         --card: 119 19% 42%;
@@ -68,6 +69,8 @@
     body {
         @apply transition-colors duration-300;
         font-feature-settings: "rlig" 1, "calt" 1;
+        /* adding the font for the site here */
+        font-family: 'Playfair Display', serif;
     }
 }
 
