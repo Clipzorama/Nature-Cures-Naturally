@@ -21,12 +21,12 @@ export const NavBar = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     return (
-        <nav className="fixed w-full transition-all duration-300 background/80 pt-7 pb-3">
+        <nav className="fixed w-full transition-all duration-300 background/80 pt-7 pb-3 z-100">
             <div className="container flex justify-between items-center">
                 <a className="text-xl font-bold text-primary flex items-center" href="#hero">
-                    <img src={NCC} alt="Logo" className="w-10 h-10 mr-4" />
-                    <span className="relative z-10 transition-colors">
-                        <span className="text-foreground">Nature Cures</span> Naturally
+                    <img src={NCC} alt="Logo" className="w-10 h-10 mr-4 z-100" />
+                    <span className="relative z-100 transition-colors">
+                        <span className="text-foreground">NCC</span> Inc.
                     </span>
                 </a>
 
