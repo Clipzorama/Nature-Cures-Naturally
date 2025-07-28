@@ -23,19 +23,17 @@ export const HeroSide = () => {
                     <span className="text-primary opacity-0 animate-fade-in-delay-1">Cures </span>
                     <span className="text-primary opacity-0 animate-fade-in-delay-2">Naturally</span>
                 </h1>
-                <p className="text-md text-pretty px-6 md:text-lg md:px-10 max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3 mb-4">
+                <p className="text-sm text-pretty px-6 md:text-lg md:px-10 max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3 mb-4">
                     Empowering you to eat with purpose, live with intention, and heal naturally because your body deserves what nature provides.
                 </p>
 
-                <div className="flex justify-center gap-2 md:absolute md:inset-0 md:items-center md:justify-center md:gap-10">
-                    <img src={root} alt="root chakra" className="w-10 h-10 md:w-20 md:h-20 md:absolute md:top-[90%] md:left-[10%] lg:w-21 lg:h-21" />
-                    <img src={sacral} alt="sacral chakra" className="w-10 h-10 md:w-20 md:h-20 md:absolute md:top-[75%] md:left-[0%] lg:w-24 lg:h-24" />
-                    <img src={yellow} alt="solar plexus chakra" className="w-10 h-10 md:w-20 md:h-20 md:absolute md:top-[50%] md:-translate-y-1/2 md:-right-[2%] lg:w-24 lg:h-24" />
-                    <img src={green} alt="heart chakra" className="w-10 h-10 md:w-20 md:h-20 md:absolute md:top-[50%] md:-left-[2%] md:-translate-y-1/2 lg:w-24 lg:h-24" />
-                    <img src={blue} alt="throat chakra" className="w-10 h-10 md:w-20 md:h-20 md:absolute md:-top-[85%] md:right-[15%] lg:w-24 lg:h-24" />
-                    <img src={blocked} alt="third eye chakra" className="w-10 h-10 md:w-20 md:h-16 md:absolute md:-top-[80%] md:left-[15%] lg:w-24 lg:h-20" />
-                    <img src={purple} alt="crown chakra" className="w-10 h-10 md:w-20 md:h-20 md:absolute md:-top-[100%] md:translate-x-1/2 md:right-[50%] lg:w-24 lg:h-24 " />
-                </div>
+                    <img src={root} alt="root chakra" className="absolute w-10 h-10 md:w-20 md:h-20 md:-bottom-[85%] md:right-[16%] lg:w-21 lg:h-21 transform pulse-slow" />
+                    <img src={sacral} alt="sacral chakra" className="absolute w-10 h-10 md:w-20 md:h-20 md:-bottom-[89%] md:left-[14%] lg:w-25 lg:h-25 transform pulse-slow" />
+                    <img src={yellow} alt="solar plexus chakra" className="absolute w-10 h-10 md:w-20 md:h-20 md:top-[50%] md:-translate-y-1/2 md:-right-[2%] lg:w-24 lg:h-24 transform pulse-slow" />
+                    <img src={green} alt="heart chakra" className="absolute w-10 h-10 md:w-20 md:h-20 md:top-[50%] md:-left-[2%] md:-translate-y-1/2 lg:w-24 lg:h-24 transform pulse-slow" />
+                    <img src={blue} alt="throat chakra" className="absolute w-10 h-10 md:w-20 md:h-20 md:-top-[85%] md:right-[15%] lg:w-24 lg:h-24 transform pulse-slow" />
+                    <img src={blocked} alt="third eye chakra" className="absolute w-10 h-10 md:w-20 md:h-16 md:-top-[80%] md:left-[15%] lg:w-24 lg:h-20 transform pulse-slow" />
+                    <img src={purple} alt="crown chakra" className="absolute w-10 h-10 md:w-20 md:h-20 md:-top-[100%] md:translate-x-1/2 md:right-[50%] lg:w-24 lg:h-24 transform pulse-slow " />
 
             
 
