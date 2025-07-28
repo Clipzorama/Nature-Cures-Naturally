@@ -21,7 +21,7 @@ export const NavBar = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     return (
-        <nav className="fixed w-full transition-all duration-300 background/80 pt-7 pb-3 z-100">
+        <nav className="fixed w-full transition-all duration-300 background/80 pt-7 pb-3 z-100 border-b ">
             <div className="container flex justify-between items-center">
                 <a className="text-xl font-bold text-primary flex items-center" href="#hero">
                     <img src={NCC} alt="Logo" className="w-10 h-10 mr-4 z-100" />
@@ -35,7 +35,7 @@ export const NavBar = () => {
                     {navItems.map((item, key) => (
                         <a key={key}
                             href={item.href}
-                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                            className="text-primary transition-colors duration-300 font-bold tracking-wider"
                             >
                             {item.name}
                         </a>
