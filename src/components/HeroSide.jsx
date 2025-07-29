@@ -49,8 +49,6 @@ export const HeroSide = () => {
                     <img src={blue} alt="blue chakra" className="chakira-icon absolute w-10 h-10 -top-[45%] right-[15%] md:w-20 md:h-20 md:-top-[85%] md:right-[15%] lg:w-24 lg:h-24 transform pulse-slow opacity-0" />
                     <img src={purple} alt="crown chakra" className="chakira-icon absolute w-10 h-10 -top-[60%] translate-x-1/2 right-[50%] md:w-20 md:h-20 md:-top-[100%] md:translate-x-1/2 md:right-[50%] lg:w-24 lg:h-24 transform pulse-slow opacity-0" />
 
-            
-
             </div>
 
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
