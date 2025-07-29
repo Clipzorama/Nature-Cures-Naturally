@@ -2,8 +2,23 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from '@/pages/Home'
 import NotFound from "@/pages/NotFound";
 import { ThemeProvider } from "@/context/ThemeProvider";
+import { useEffect, useState } from "react";
+import { Loader } from "@/components/Loader";
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+
+  if (isLoading) return <Loader />;
 
   return (
     
