@@ -46,11 +46,11 @@ export const NavBar = () => {
 
                 <button
                 onClick={() => setMenuOpen((prev) => !prev)}
-                className="md:hidden p-2 text-foreground z-50"
+                className="md:hidden p-2 text-foreground z-110"
                 aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}>
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
-                <div className={cn("fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
+                <div className={cn("fixed inset-0 min-h-screen bg-background/96 backdrop-blur-3xl z-100 flex flex-col items-center justify-center",
                                        "transition-all duration-300 md:hidden",
                                        isMenuOpen 
                                        ? "opacity-100 pointer-events-auto" 
