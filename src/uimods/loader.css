@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 .content {
   width: 100%;
   display: flex;
@@ -48,6 +46,7 @@
   transform-origin: bottom;
   transform: rotateY(calc(90deg * var(--i))) rotateX(30deg) translateZ(28.5px);
 }
+
 
 .tree div.stem span {
   position: absolute;
