@@ -11,6 +11,9 @@
     --color-primary: hsl(var(--primary));
     --color-primary-foreground: hsl(var(--primary-foreground));
 
+    --color-button: hsl(var(--button));
+
+
 
     --color-card: hsl(var(--card));
 
@@ -24,13 +27,15 @@
 
 @layer base {
     :root {
-        --background: 210 40% 98%;
+        --background: 67, 19%, 72%;
         --foreground: 222 47% 11%;
 
         --card: 0 0% 90%;
         --primary: 250 27% 30%;
         --primary-foreground: 210 40% 98%;
         --border: 214 32% 91%;
+
+        --button: 27, 73%, 20%;
         
         --animate-fade-in: fade-in 0.7s ease-out forwards;
         --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
@@ -45,10 +50,12 @@
         --background: 130 26% 9%;
         --foreground: 213 31% 91%;
 
-        --card: 119 19% 42%;
+        --card: 30, 44%, 40%;
         --primary: 46 15% 83%;
         --primary-foreground: 213 31% 91%;
         --border: 82 20% 62%;
+
+        --button: 27, 73%, 20%
 
     }
 
