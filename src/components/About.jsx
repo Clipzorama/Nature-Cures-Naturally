@@ -99,12 +99,12 @@ export const AboutSection = () => {
 
     return (
         <section id="about" className="px-2 md:px-4 py-32 relative min-h-screen">
-            <h1 ref={headingRef} className="text-center text-3xl md:text-4xl text-primary mb-20 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar!</h1>
+            <h1 ref={headingRef} className="text-center text-3xl md:text-4xl text-card mb-20 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar 🪷</h1>
             <div className="container flex flex-col items-center lg:items-start lg:flex-row gap-10 md:gap-20">
 
                 {/* left side */}
                 <div className="flex flex-col w-[100%] md:w-[70%]" ref={textRef}>
-                    <h2 className="text-primary text-3xl text-center">About Me</h2>
+                    <h2 className="text-primary text-3xl text-center">About Me ❤️</h2>
                     <p className="text-pretty text-primary text-md md:text-lg text-center mt-12 mb-8">
                         Growing up in a family rooted in the land, I was raised on my mothers side of the family farm, where we grew our own fruits and vegetables. Everything we cooked came straight from the garden. 
                         From as early as five years old, I was taught not only how to cook but also how to plant and care for the food we ate. My grandparents passed down this knowledge with love and care, teaching me how to live in harmony with nature.
@@ -135,8 +135,71 @@ export const AboutSection = () => {
             </div>
 
             {/* Clean card concept ill add here */}
-            <div>
+            <div className="flex flex-col items-center justify-center mt-20">
+                <h1 className="text-center text-3xl md:text-4xl text-card mb-20 font-bold">The Tools That Nourish 🌸</h1>
 
+                <section className="py-10">
+                    {/* Healing Practices & Philosophies */}
+                    <h2 className="text-2xl font-bold text-center mb-6 text-primary">
+                        Healing Practices & Philosophies
+                    </h2>
+                    <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
+                        {healing.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                            <div
+                            key={idx}
+                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:shadow-xl transition"
+                            >
+                            <Icon className="mx-auto mb-2 text-black" size={32} />
+                            <p className="text-sm font-medium">{item.name}</p>
+                            </div>
+                        );
+                        })}
+                    </div>
+                    </section>
+
+                    <section className="py-10">
+                    {/* Coaching Services */}
+                    <h2 className="text-2xl font-bold text-center mb-6 text-primary">
+                        Coaching Services
+                    </h2>
+                    <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
+                        {coaching.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                            <div
+                            key={idx}
+                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:shadow-xl transition"
+                            >
+                            <Icon className="mx-auto mb-2 text-black" size={32} />
+                            <p className="text-sm font-medium">{item.name}</p>
+                            </div>
+                        );
+                        })}
+                    </div>
+                    </section>
+
+                    <section className="py-10">
+                    {/* Tools & Certifications */}
+                    <h2 className="text-2xl font-bold text-center mb-6 text-primary">
+                        Tools & Certifications
+                    </h2>
+                    <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
+                        {certification.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                            <div
+                            key={idx}
+                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:shadow-xl transition"
+                            >
+                            <Icon className="mx-auto mb-2 text-black" size={32} />
+                            <p className="text-sm font-medium">{item.name}</p>
+                            </div>
+                        );
+                        })}
+                    </div>
+                </section>
             </div>
 
             
