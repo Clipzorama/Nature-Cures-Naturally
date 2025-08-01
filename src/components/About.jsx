@@ -24,7 +24,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// look for websites like "react bits" to find a cool background for the website
+// GSAP THE CARD CONCEPT TITLES
 
 export const AboutSection = () => {
 
@@ -55,6 +55,8 @@ export const AboutSection = () => {
     const headingRef = useRef(null);
     const textRef = useRef(null);
     const imageRef = useRef(null);
+
+
 
     useGSAP(() => {
         gsap.from(headingRef.current, {
@@ -94,13 +96,62 @@ export const AboutSection = () => {
                 toggleActions: "play none none none",
                 scrub: true,
             },
-    });
+        });
+
+        // Animate healer cards
+        gsap.from(".healer", {
+        opacity: 0,
+        y: 50,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".healer",
+            start: "top 100%",
+            end: "top 10%",
+            toggleActions: "play none none none",
+            scrub: true,
+        },
+        });
+
+        // Animate coacher cards
+        gsap.from(".coacher", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".coacher",
+            start: "top 100%",
+            end: "top 40%",
+            toggleActions: "play none none none",
+            scrub: true,
+        },
+        });
+
+        // Animate certificer cards
+        gsap.from(".certificer", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".certificer",
+            start: "top 100%",
+            end: "top 70%",
+            toggleActions: "play none none none",
+            scrub: true,
+        },
+        });
+
     }, {dependencies: []});
 
     return (
         <section id="about" className="px-2 md:px-4 py-32 relative min-h-screen">
             <h1 ref={headingRef} className="text-center text-3xl md:text-4xl text-card mb-20 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar 🪷</h1>
-            <div className="container flex flex-col items-center lg:items-start lg:flex-row gap-10 md:gap-20">
+            <div className="container flex flex-col items-center lg:items-start lg:flex-row lg: gap-10 md:gap-20">
 
                 {/* left side */}
                 <div className="flex flex-col w-[100%] md:w-[70%]" ref={textRef}>
@@ -118,11 +169,11 @@ export const AboutSection = () => {
                         Nature Curious Naturally is my way of reconnecting people to the healing wisdom of food and sharing how a natural, holistic lifestyle can support lifelong health and wellness.
                     </p>
                     <div className="flex sm-flex-row gap-4 mt-4 justify-center">
-                        <a href="#contact" className="px-4 py-2 rounded-2xl border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 font-medium">
+                        <a href="#contact" className="px-4 py-2 rounded-1xl bg-button border border-primary text-primary hover:bg-button/60 transition-colors duration-300 font-medium">
                             Connect
                         </a>
 
-                        <a href="/RESUME.pdf" download className="px-4 py-2 rounded-2xl border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 font-medium">
+                        <a href="/RESUME.pdf" download className="px-4 py-2 rounded-1xl border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 font-medium">
                             Download My CV
                         </a>
                     </div>
@@ -136,12 +187,12 @@ export const AboutSection = () => {
 
             {/* Clean card concept ill add here */}
             <div className="flex flex-col items-center justify-center mt-20">
-                <h1 className="text-center text-3xl md:text-4xl text-card mb-20 font-bold">The Tools That Nourish 🌸</h1>
+                <h1 className="text-center text-3xl md:text-4xl text-card mb-10 font-bold">The Tools That Nourish 🌸</h1>
 
                 <section className="py-10">
                     {/* Healing Practices & Philosophies */}
                     <h2 className="text-2xl font-bold text-center mb-6 text-primary">
-                        Healing Practices & Philosophies
+                        Healing Practices & Philosophies 🍃
                     </h2>
                     <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
                         {healing.map((item, idx) => {
@@ -149,7 +200,7 @@ export const AboutSection = () => {
                         return (
                             <div
                             key={idx}
-                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:shadow-xl transition"
+                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:bg-primary hover:text-black transition-colors duration-300 hover:shadow-xl healer"
                             >
                             <Icon className="mx-auto mb-2 text-black" size={32} />
                             <p className="text-sm font-medium">{item.name}</p>
@@ -162,7 +213,7 @@ export const AboutSection = () => {
                     <section className="py-10">
                     {/* Coaching Services */}
                     <h2 className="text-2xl font-bold text-center mb-6 text-primary">
-                        Coaching Services
+                        Coaching Services 🧑‍🤝‍🧑
                     </h2>
                     <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
                         {coaching.map((item, idx) => {
@@ -170,7 +221,7 @@ export const AboutSection = () => {
                         return (
                             <div
                             key={idx}
-                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:shadow-xl transition"
+                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:bg-primary hover:text-black transition-colors duration-300 hover:shadow-xl coacher"
                             >
                             <Icon className="mx-auto mb-2 text-black" size={32} />
                             <p className="text-sm font-medium">{item.name}</p>
@@ -183,7 +234,7 @@ export const AboutSection = () => {
                     <section className="py-10">
                     {/* Tools & Certifications */}
                     <h2 className="text-2xl font-bold text-center mb-6 text-primary">
-                        Tools & Certifications
+                        Tools & Certifications 🌟
                     </h2>
                     <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
                         {certification.map((item, idx) => {
@@ -191,7 +242,7 @@ export const AboutSection = () => {
                         return (
                             <div
                             key={idx}
-                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:shadow-xl transition"
+                            className="card p-4 bg-card shadow-lg rounded-xl text-center hover:bg-primary hover:text-black transition-colors duration-300 hover:shadow-xl certificer"
                             >
                             <Icon className="mx-auto mb-2 text-black" size={32} />
                             <p className="text-sm font-medium">{item.name}</p>
