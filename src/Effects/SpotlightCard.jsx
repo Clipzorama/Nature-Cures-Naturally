@@ -14,7 +14,7 @@ const SpotlightCard = ({ children, className = "" }) => {
 
   // Set spotlight color based on theme
   const spotlightColor = theme === "dark"
-    ? "rgba(77, 38, 14, 0.2)" // dark primary
+    ? "rgba(77, 38, 14, 0.3)" // dark primary
     : "rgba(115, 99, 190, 0.3)"; // light primary
 
 
