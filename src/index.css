@@ -115,6 +115,33 @@
   }
 }
 
+@utility text-glow {
+  @apply relative;
+  text-shadow: 0 0 5px rgba(167, 139, 250, 0.5);
+}
+
+
 @utility pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Styling the entire scrollbar */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Styling the scrollbar track */
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+/* Styling the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  @apply bg-card;
+  border-radius: 5px;
+}
+
+/* Styling the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-button
 }
