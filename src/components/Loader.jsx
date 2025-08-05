@@ -1,5 +1,4 @@
 import "@/uimods/loader.css"
-import "@/index.css"
 
 export const Loader = () => {
   
