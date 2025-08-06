@@ -3,7 +3,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SpotlightCard from "@/Effects/SpotlightCard";
 import {
   Leaf,
   Apple,
