@@ -32,7 +32,7 @@ export const AboutSection = () => {
         {name: "Herbal Remedies", icon: Leaf},
         {name: "Whole Foods Nutrition", icon: Apple},
         {name: "Plant-Based Healing", icon: Sprout},
-        {name: "Mind-Body Connection", icon: Brain},
+        {name: "Mind & Body", icon: Brain},
         {name: "Emotional Wellbeing", icon: HeartPulse},
     ]
 
@@ -46,7 +46,7 @@ export const AboutSection = () => {
 
     const certification = [
         {name: "IIN Certified Coach", icon: GraduationCap},
-        {name: "Health History Assessment", icon: FileText},
+        {name: "Health History", icon: FileText},
         {name: "Wellness Journals", icon: NotebookPen},
         {name: "Organic Meal Guides", icon: BookOpenCheck},
         {name: "Depression Studies Certificate", icon: Award},
@@ -66,7 +66,7 @@ export const AboutSection = () => {
             scrollTrigger: {
                 trigger: headingRef.current,
                 start: "top 80%",
-                end: "top 1%",
+                end: "top 10%",
                 toggleActions: "play none none none",
                 scrub: true,
             },
@@ -74,12 +74,12 @@ export const AboutSection = () => {
 
         gsap.from(textRef.current, {
             opacity: 0,
-            x: -150,
+            x: -100,
             duration: 1,
             scrollTrigger: {
                 trigger: textRef.current,
                 start: "top 80%",
-                end: "top 10%",
+                end: "top 35%",
                 toggleActions: "play none none none",
                 scrub: true,
             },
@@ -189,10 +189,10 @@ export const AboutSection = () => {
 
                 <section className="py-10">
                     {/* Healing Practices & Philosophies */}
-                    <h2 className="text-2xl font-bold text-center mb-6 text-primary">
-                        Healing Practices & Philosophies 🍃
+                    <h2 className="text-2xl font-bold text-center px-1 mb-6 text-primary">
+                        Natural Practices 🍃
                     </h2>
-                    <div className="flex flex-wrap justify-center gap-4 p-4 max-lg:gap-3 w-full">
+                    <div className="flex flex-wrap justify-center gap-4 sm:p-1 p-4 max-lg:gap-3 w-full">
                         {healing.map((item, idx) => {
                         const Icon = item.icon;
                         return (
