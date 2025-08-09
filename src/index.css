@@ -98,6 +98,26 @@
         /* adding the font for the site here */
         font-family: 'DM Sans', sans-serif;
     }
+
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2),
+                    0 0 30px rgba(255, 215, 0, 0.1);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.4),
+                    0 0 50px rgba(255, 215, 0, 0.2);
+      }
+      100% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2),
+                    0 0 30px rgba(255, 215, 0, 0.1);
+      }
+    }
+
+    .animate-pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
 }
 
 @utility container {
@@ -132,23 +152,19 @@
 }
 
 @utility marquee-track {
-  animation: marquee-x 25s linear infinite;
+  animation: marquee-x 28s linear infinite;
+  will-change: transform;
 }
 
-@layer utilities {
-  .marquee-pause:hover .marquee-track {
-    animation-play-state: paused;
-  }
+/* use with group-hover to pause */
+@utility animation-paused { animation-play-state: paused; }
+
+@utility mask-edges-lg {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
 
-@utility mask-edges {
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-}
 
 /* Styling the entire scrollbar */
 ::-webkit-scrollbar {
