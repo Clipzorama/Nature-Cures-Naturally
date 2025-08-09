@@ -124,7 +124,7 @@ export const AboutSection = () => {
         scrollTrigger: {
             trigger: ".coacher",
             start: "top 100%",
-            end: "top 40%",
+            end: "top 10%",
             toggleActions: "play none none none",
             scrub: true,
         },
@@ -140,7 +140,7 @@ export const AboutSection = () => {
         scrollTrigger: {
             trigger: ".certificer",
             start: "top 100%",
-            end: "top 70%",
+            end: "top 10%",
             toggleActions: "play none none none",
             scrub: true,
         },
