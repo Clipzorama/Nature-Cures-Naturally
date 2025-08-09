@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HednickPhoto from "@/assets/hednick.png"; // your image path
+import HednickPhoto from "@/assets/hednick.webp"; // your image path
 
 export const Inspiration = () => {
   const [showMore, setShowMore] = useState(false);

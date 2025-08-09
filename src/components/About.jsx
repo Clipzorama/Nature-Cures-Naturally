@@ -1,4 +1,4 @@
-import Nicole from "@/assets/nicole.jpg"
+import Nicole from "@/assets/nicole.webp"
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
