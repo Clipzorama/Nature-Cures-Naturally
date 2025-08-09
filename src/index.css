@@ -156,8 +156,6 @@
   will-change: transform;
 }
 
-/* use with group-hover to pause */
-@utility animation-paused { animation-play-state: paused; }
 
 @utility mask-edges-lg {
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);

@@ -30,7 +30,7 @@ function Run({ items, ariaHidden = false }) {
 export default function RecipeLearnStrip() {
   return (
     <div className="mask-edges-lg mt-20 rounded-2xl border border-border bg-background/70 backdrop-blur overflow-hidden">
-      <div className="marquee-track flex min-w-[200%] whitespace-nowrap py-4 hover:animation-paused">
+      <div className="marquee-track flex min-w-[200%] whitespace-nowrap py-4">
         {/* Added two of them so it looks more like a loop*/}
         <Run items={PHRASES} />
         <Run items={PHRASES} ariaHidden />

@@ -7,7 +7,7 @@ export const Inspiration = () => {
   return (
     <section id="inspiration"className="py-32 relative min-h-screen">
       {/* Section Title */}
-        <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-12 font-bold">
+        <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-15 font-bold">
             In Spirit & In Inspiration 🕊️
         </h1>
 
