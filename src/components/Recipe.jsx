@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -181,6 +181,20 @@ export const RecipeSection = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const stripRef = useRef(null);
+  const [stripActive, setStripActive] = useState(false);
+
+  useEffect(() => {
+    const el = stripRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setStripActive(entry.isIntersecting),
+      { threshold: 0.1, rootMargin: "0px 0px -20% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section id="recipes" className="py-32 relative min-h-screen">
         <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-20 font-bold">
@@ -351,7 +365,10 @@ export const RecipeSection = () => {
             ))}
         </div>
 
-        <RecipeLearnStrip />
+        {/* Only animates when visible */}
+        <div ref={stripRef}>
+          <RecipeLearnStrip active={stripActive} />
+        </div>
     </section>
   );
 };

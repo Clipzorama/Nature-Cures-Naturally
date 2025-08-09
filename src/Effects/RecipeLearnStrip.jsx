@@ -1,3 +1,4 @@
+// RecipeLearnStrip.jsx
 const PHRASES = [
   "Want To Make This Yourself?",
   "1:1 Cooking Lesson",
@@ -8,13 +9,9 @@ const PHRASES = [
   "Master The Recipe, Your Way!",
 ];
 
-// flex div that contains the phrases
 function Run({ items, ariaHidden = false }) {
   return (
-    <div
-      aria-hidden={ariaHidden}
-      className="flex flex-none items-center gap-10 pr-10"
-    >
+    <div aria-hidden={ariaHidden} className="flex flex-none items-center gap-10 pr-10">
       {items.map((t, i) => (
         <div key={i} className="flex flex-none items-center gap-10">
           <span className="whitespace-nowrap text-lg md:text-2xl font-medium text-foreground/90 tracking-wide px-8">
@@ -27,11 +24,21 @@ function Run({ items, ariaHidden = false }) {
   );
 }
 
-export default function RecipeLearnStrip() {
+// accept `active` to pause when off-screen
+export default function RecipeLearnStrip({ active = true }) {
   return (
-    <div className="mask-edges-lg mt-20 rounded-2xl border border-border bg-background/70 backdrop-blur overflow-hidden">
-      <div className="marquee-track flex min-w-[200%] whitespace-nowrap py-4">
-        {/* Added two of them so it looks more like a loop*/}
+    <div
+      className="
+        mask-edges-lg mt-20 rounded-2xl border border-border
+        bg-background/70 overflow-hidden
+      "
+    >
+      <div
+        className={`
+          marquee-track flex min-w-[200%] whitespace-nowrap py-4
+          ${active ? "marquee-play" : "marquee-pause"}
+        `}
+      >
         <Run items={PHRASES} />
         <Run items={PHRASES} ariaHidden />
       </div>

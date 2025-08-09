@@ -118,6 +118,11 @@
       animation: pulse-glow 3s ease-in-out infinite;
     }
 
+    @keyframes marqueeSlide {
+      0%   { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-50%,0,0); } /* two runs = seamless loop */
+    }
+
 }
 
 @utility container {
@@ -161,6 +166,23 @@
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
+
+@utility marquee-track {
+  will-change: transform;
+  contain: content;
+}
+
+@utility marquee-play {
+  animation: marqueeSlide 25s linear infinite;
+  animation-play-state: running;
+}
+
+@utility marquee-pause {
+  animation: marqueeSlide 25s linear infinite;
+  animation-play-state: paused;
+}
+
+
 
 
 
