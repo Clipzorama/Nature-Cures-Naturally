@@ -8,11 +8,11 @@ import RecipeLearnStrip from "@/Effects/RecipeLearnStrip";
 
 
 // images
-import food1 from "@/food/food1.png";
-import food2 from "@/food/food2.png";
-import food3 from "@/food/food3.png";
-import food4 from "@/food/food4.png";
-import food5 from "@/food/food5.png";
+import food1 from "@/food/food1.webp";
+import food2 from "@/food/food2.webp";
+import food3 from "@/food/food3.webp";
+import food4 from "@/food/food4.webp";
+import food5 from "@/food/food5.webp";
 
 // The food and its information
 const dishes = [
