@@ -81,6 +81,12 @@
       }
     }
 
+    /* this will be for the strip */
+    @keyframes marquee-x {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
 
     html {
         @apply scroll-smooth;
@@ -123,6 +129,25 @@
 
 @utility pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@utility marquee-track {
+  animation: marquee-x 25s linear infinite;
+}
+
+@layer utilities {
+  .marquee-pause:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@utility mask-edges {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }
 
 /* Styling the entire scrollbar */
