@@ -48,7 +48,7 @@ const dishes = [
       {
         name: "Basmati rice",
         benefit:
-          "Lower GI; may aid blood-sugar control, heart health, and digestion.",
+          "Lower Glycemic Index; may aid blood-sugar control, heart health, and digestion.",
       },
       {
         name: "Okra",
