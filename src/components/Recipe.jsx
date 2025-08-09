@@ -1,7 +1,10 @@
-// src/components/RecipeSection.jsx
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+// Recipe Strip
+
+import RecipeLearnStrip from "@/Effects/RecipeLearnStrip";
 
 
 // images
@@ -298,12 +301,12 @@ export const RecipeSection = () => {
                             <motion.li
                                 key={ing.name}
                                 variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                                className="flex gap-3"
-                            >
-                                <div className="mt-1 w-2.5 h-2.5 rounded-full bg-primary" />
+                                className="flex gap-3">
+                                  {/* bullet */}
+                                <div className="mt-2 w-2.5 h-2.5 rounded-full bg-primary" />
                                 <div>
-                                <p className="font-medium text-foreground">{ing.name}</p>
-                                <p className="text-sm text-foreground/70">{ing.benefit}</p>
+                                  <p className="font-medium text-foreground">{ing.name}</p>
+                                  <p className="text-sm text-foreground/70">{ing.benefit}</p>
                                 </div>
                             </motion.li>
                             ))}
@@ -347,6 +350,8 @@ export const RecipeSection = () => {
             </button>
             ))}
         </div>
+
+        <RecipeLearnStrip />
     </section>
   );
 };
