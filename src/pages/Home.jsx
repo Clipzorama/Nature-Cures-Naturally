@@ -2,7 +2,8 @@ import { NavBar } from '@/components/Navbar'
 import { LightSwitch } from '@/components/LightSwitch'
 import { HeroSide } from '@/components/HeroSide';
 import { AboutSection } from '@/components/About';
-import {RecipeSection} from '@/components/Recipe';
+import { RecipeSection } from '@/components/Recipe';
+import { Inspiration } from '@/components/Inspiration';
 import LeafRain from "@/uimods/LeafRain";
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
             <HeroSide />
             <AboutSection />
             <RecipeSection />
+            <Inspiration />
         </div>
     );
 }
