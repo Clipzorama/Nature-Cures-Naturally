@@ -349,7 +349,7 @@ export const RecipeSection = () => {
             <button
                 key={d.id}
                 onClick={() => setI(idx)}
-                className={`rounded-xl border border-border bg-background/30 p-2 hover:border-button transition-colors duration-300 ${
+                className={`rounded-xl border-2 border-border bg-background/30 p-2 hover:border-button transition-colors duration-300 ${
                 idx === i ? "border-none ring-2 ring-button" : ""
                 }`}
                 aria-label={`View ${d.name}`}
