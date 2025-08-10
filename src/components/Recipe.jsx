@@ -226,7 +226,7 @@ export const RecipeSection = () => {
                         className="rounded-xl border border-border bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
                         aria-label="Previous recipe"
                         >
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 cursor-pointer">
                             <ChevronLeft size={18} />
                             Prev
                         </div>
@@ -238,7 +238,7 @@ export const RecipeSection = () => {
                         onClick={next}
                         className="rounded-xl border border-border bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
                         aria-label="Next recipe">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 cursor-pointer">
                             Next <ChevronRight size={18} />
                         </div>
                     </button>
@@ -334,7 +334,7 @@ export const RecipeSection = () => {
                         className="mt-auto pt-6 flex gap-3">
                         <button
                             onClick={next}
-                            className="rounded-xl text-primary border border-border px-4 py-2 text-sm hover:bg-button transition-colors duration-300">
+                            className="rounded-xl text-primary border border-border px-4 py-2 text-sm hover:bg-button transition-colors duration-300 cursor-pointer">
                             Next Recipe →
                         </button>
                     </motion.div>
@@ -349,7 +349,7 @@ export const RecipeSection = () => {
             <button
                 key={d.id}
                 onClick={() => setI(idx)}
-                className={`rounded-xl border-2 border-border bg-background/30 p-2 hover:border-button transition-colors duration-300 ${
+                className={`rounded-xl border-2 border-border bg-background/30 p-2 hover:border-button transition-colors duration-300 cursor-pointer ${
                 idx === i ? "border-none ring-2 ring-button" : ""
                 }`}
                 aria-label={`View ${d.name}`}
