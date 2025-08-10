@@ -77,14 +77,14 @@ export const ContactSection = () => {
                                 <label htmlFor="subject" className="text-sm font-bold text-primary mb-2 block">Subject</label>
                                 <input type="text" placeholder="Subject" id="subject" name="subject" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
                             </div>
-                            <div className="mb-8">
+                            <div className="mb-20">
                                 <label htmlFor="message" className="text-sm font-bold text-primary mb-2 block">Message</label>
                                 <textarea type="text" placeholder="Your Message..." id="message" name="message" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
                             </div>
                             <button 
                             type="submit" 
                             required
-                            className="bg-background px-4 py-6 w-[50%] flex items-center justify-center gap-2 cursor-pointer mx-auto rounded-2xl hover:bg-primary hover:text-black transition-colors duration-300 font-bold text-lg"
+                            className="bg-background px-4 py-6 w-[80%] md:w-[60%] flex items-center justify-center gap-2 cursor-pointer mx-auto rounded-2xl hover:bg-primary hover:text-black transition-colors duration-300 font-bold text-lg"
                             >
                                 Send Message <Send size={16} />
                             </button>
