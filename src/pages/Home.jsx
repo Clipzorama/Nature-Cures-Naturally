@@ -4,6 +4,7 @@ import { HeroSide } from '@/components/HeroSide';
 import { AboutSection } from '@/components/About';
 import { RecipeSection } from '@/components/Recipe';
 import { Inspiration } from '@/components/Inspiration';
+import { ContactSection } from '@/components/Contact';
 import LeafRain from "@/uimods/LeafRain";
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
             <AboutSection />
             <RecipeSection />
             <Inspiration />
+            <ContactSection />
         </div>
     );
 }
