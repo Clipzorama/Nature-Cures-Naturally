@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HednickPhoto from "@/assets/hednick.webp"; // your image path
+import Hednick from "@/assets/hednick.webp"; // your image path
 
 export const Inspiration = () => {
   const [showMore, setShowMore] = useState(false);
@@ -15,9 +15,9 @@ export const Inspiration = () => {
             {/* Photo with pulsating shadow */}
             <div className="relative w-full max-w-3xl mb-8">
                 <img
-                src={HednickPhoto}
+                src={Hednick}
                 alt="Hednick"
-                className="w-full rounded-2xl object-cover shadow-lg animate-pulse-glow"
+                className="w-full rounded-2xl object-cover shadow-lg"
                 />
             </div>
 
