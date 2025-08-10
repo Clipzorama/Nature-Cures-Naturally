@@ -189,7 +189,7 @@ export const RecipeSection = () => {
     if (!el) return;
     const io = new IntersectionObserver(
       ([entry]) => setStripActive(entry.isIntersecting),
-      { threshold: 0.1, rootMargin: "0px 0px -20% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px 0px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
