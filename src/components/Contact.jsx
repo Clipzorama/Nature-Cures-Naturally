@@ -1,4 +1,4 @@
-import { Linkedin, Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 
 export const ContactSection = () => {
@@ -23,16 +23,16 @@ export const ContactSection = () => {
                             </p>
                             <div className="space-y-6">
                                 <div className="flex items-center space-x-4">
-                                    <Mail size={24} className="text-cyan-300" />
-                                    <span className="text-cyan-300">Naturecuresnaturally1@gmail.com</span>
+                                    <Mail size={24} className="text-[hsl(37,66%,64%)]" />
+                                    <span className="text-[hsl(37,66%,64%)]">Naturecuresnaturally1@gmail.com</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <Phone size={24} className="text-cyan-300" />
-                                    <span className="text-cyan-300">+1 (929) 900 6536</span>
+                                    <Phone size={24} className="text-[hsl(98,48%,61%)]" />
+                                    <span className="text-[hsl(98,48%,61%)]">+1 (929) 900 6536</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <MapPin size={24} className="text-cyan-300" />
-                                    <span className="text-cyan-300">Rooted in New York & Derby, Connecticut 🌿</span>
+                                    <MapPin size={24} className="text-[hsl(91,20%,63%)]" />
+                                    <span className="text-[hsl(91,20%,63%)]">Rooted in New York & Derby, Connecticut 🌿</span>
                                 </div>
 
                             </div>
@@ -56,7 +56,41 @@ export const ContactSection = () => {
 
                         </div>
                     </div>
-                    <div className="relative bg-button border border-primary rounded-2xl">
+                    {/* Contact Side */}
+                    <div className="relative bg-button border border-primary rounded-2xl p-10">
+                        <form action="">
+                            <h2 className="text-3xl text-background mb-4 font-extrabold text-center">Start A Conversation</h2>
+                            <p className="text-primary text-center text-lg mb-8">Fill out the form below and I'll get back to you soon</p>
+                            {/* top fields */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                                <div>
+                                    <label htmlFor="name" className="text-sm font-bold text-primary mb-2 block">Full Name</label>
+                                    <input type="text" placeholder="Your Name..." id="name" name="name" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">Email</label>
+                                    <input type="email" placeholder="Your Name..." id="email" name="email" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                                </div>
+                            </div>
+
+                            <div className="mb-8">
+                                <label htmlFor="subject" className="text-sm font-bold text-primary mb-2 block">Subject</label>
+                                <input type="text" placeholder="Subject" id="subject" name="subject" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                            </div>
+                            <div className="mb-8">
+                                <label htmlFor="message" className="text-sm font-bold text-primary mb-2 block">Message</label>
+                                <textarea type="text" placeholder="Your Message..." id="message" name="message" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                            </div>
+                            <button 
+                            type="submit" 
+                            required
+                            className="bg-background px-4 py-6 w-[50%] flex items-center justify-center gap-2 cursor-pointer mx-auto rounded-2xl hover:bg-primary hover:text-black transition-colors duration-300 font-bold text-lg"
+                            >
+                                Send Message <Send size={16} />
+                            </button>
+                            
+                        </form>
+                        
 
                     </div>
 
