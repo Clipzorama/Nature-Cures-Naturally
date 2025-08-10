@@ -99,20 +99,6 @@
         font-family: 'DM Sans', sans-serif;
     }
 
-    @keyframes pulse-glow {
-      0% {
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2),
-                    0 0 30px rgba(255, 215, 0, 0.1);
-      }
-      50% {
-        box-shadow: 0 0 25px rgba(255, 215, 0, 0.4),
-                    0 0 50px rgba(255, 215, 0, 0.2);
-      }
-      100% {
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2),
-                    0 0 30px rgba(255, 215, 0, 0.1);
-      }
-    }
 
     .animate-pulse-glow {
       animation: pulse-glow 3s ease-in-out infinite;
@@ -181,9 +167,6 @@
   animation: marqueeSlide 25s linear infinite;
   animation-play-state: paused;
 }
-
-
-
 
 
 /* Styling the entire scrollbar */
