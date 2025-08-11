@@ -197,26 +197,25 @@ export const RecipeSection = () => {
 
   return (
     <section id="recipes" className="py-32 relative min-h-screen">
-        <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-20 font-bold">
+        <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-10 font-bold">
             A Taste of My Food 🥣
         </h1>
 
         <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
 
-            {/* LEFT: fixed image frame (no layout shift) */}
             <div className="relative rounded-2xl ring-1 ring-border bg-background/40 p-4 md:p-6">
-            {/* changed classes so the image doesnt cause layout shifting */}
+                {/* LEFT: fixed image frame (no layout shift) */}
                 <div className="relative w-full rounded-xl overflow-hidden mx-auto aspect-square">
-                {dishes.map((d, idx) => (
-                <img
-                    key={d.id}
-                    src={d.image}
-                    alt={d.name}
-                    className={`absolute inset-0 w-full h-full object-contain drop-shadow-xl transition-opacity duration-300 ${
-                    idx === i ? "opacity-100" : "opacity-0"
-                    }`}
-                    loading={idx === i ? "eager" : "lazy"}/>
-                    ))}
+                  {dishes.map((d, idx) => (
+                  <img
+                      key={d.id}
+                      src={d.image}
+                      alt={d.name}
+                      className={`absolute top-1/2 left-1/2 w-[500px] h-[500px] object-contain drop-shadow-xl transition-opacity duration-300 -translate-x-1/2 -translate-y-1/2 ${
+                      idx === i ? "opacity-100" : "opacity-0"
+                      }`}
+                      loading={idx === i ? "eager" : "lazy"}/>
+                      ))}
                 </div>
 
                 {/* Controls (frame never moves) */}
@@ -258,7 +257,7 @@ export const RecipeSection = () => {
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.25, delay: 0.05 }}
-                        className="text-2xl md:text-3xl font-bold text-primary"
+                        className="text-xl md:text-3xl font-bold text-primary text-center text-pretty"
                         >
                         {dish.name}
                     </motion.h2>
@@ -267,7 +266,7 @@ export const RecipeSection = () => {
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.25, delay: 0.1 }}
-                        className="mt-3 text-foreground/80"
+                        className="mt-3 text-foreground/80 text-md md:text-lg text-pretty "
                         >
                         {dish.intro}
                     </motion.p>
@@ -319,8 +318,8 @@ export const RecipeSection = () => {
                                   {/* bullet */}
                                 <div className="mt-2 w-2.5 h-2.5 rounded-full bg-primary" />
                                 <div>
-                                  <p className="font-medium text-foreground">{ing.name}</p>
-                                  <p className="text-sm text-foreground/70">{ing.benefit}</p>
+                                  <p className="font-sm text-foreground">{ing.name}</p>
+                                  <p className="text-xs text-foreground/70">{ing.benefit}</p>
                                 </div>
                             </motion.li>
                             ))}
