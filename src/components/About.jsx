@@ -27,6 +27,8 @@ gsap.registerPlugin(ScrollTrigger);
 // GSAP THE CARD CONCEPT TITLES
 
 export const AboutSection = () => {
+    const isMobile = window.innerWidth <= 768; // or whatever breakpoint you want
+    const startPoint = isMobile ? "top 45%" : "top 95%";
 
     const healing = [
         {name: "Herbal Remedies", icon: Leaf},
@@ -104,11 +106,11 @@ export const AboutSection = () => {
         y: 50,
         duration: 0.5,
         stagger: 0.1,
-        ease: "power2.out",
+        ease: "bounce",
         scrollTrigger: {
             trigger: ".healer",
-            start: "top 100%",
-            end: "top 10%",
+            start: startPoint,
+            end: "top 15%",
             toggleActions: "play none none none",
             scrub: true,
         },
@@ -120,11 +122,11 @@ export const AboutSection = () => {
         y: 50,
         duration: 1,
         stagger: 0.1,
-        ease: "power2.out",
+        ease: "bounce",
         scrollTrigger: {
             trigger: ".coacher",
-            start: "top 100%",
-            end: "top 10%",
+            start: startPoint,
+            end: "top 15%",
             toggleActions: "play none none none",
             scrub: true,
         },
@@ -136,11 +138,11 @@ export const AboutSection = () => {
         y: 50,
         duration: 1,
         stagger: 0.1,
-        ease: "power2.out",
+        ease: "bounce",
         scrollTrigger: {
             trigger: ".certificer",
-            start: "top 100%",
-            end: "top 10%",
+            start: startPoint,
+            end: "top 15%",
             toggleActions: "play none none none",
             scrub: true,
         },
