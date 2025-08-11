@@ -41,14 +41,14 @@ export const ContactSection = () => {
     return (
         <section id="contact" className="py-24 relative bg-secondary/30">
             <div className="px-4">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-card">
+                <h2 className="text-4xl font-bold mb-4 text-center text-card">
                     Get In Touch 💌
                 </h2>
-                <p className="text-center text-pretty text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-center text-pretty text-lg text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
                     I'm here to listen, guide, and support you on your wellness journey. 
                 </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 px-2 md:px-12 lg:px-6 2xl:px-64">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 px-2 md:px-12 lg:px-16 2xl:px-40">
                     {/* Left Side */}
                     <div className="space-y-10">
                         {/* 1st Box */}
