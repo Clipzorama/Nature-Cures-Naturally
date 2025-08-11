@@ -1,7 +1,43 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { useToast } from '../hooks/useT';
+import { useState } from "react";
 
 
 export const ContactSection = () => {
+
+    const {toast} = useToast();
+    const [inSubmission, setSubmission] = useState(false);
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setSubmission(true);
+
+    const form = e.target;
+
+    emailjs.sendForm(
+        'service_bhjoiah',
+        'template_yo9b2wt',
+        form,
+        'cUOI3JuKmxe5PWMEV'
+    ).then(() => {
+        toast({
+            title: 'Message sent successfully',
+            description: 'We will get back to you soon.',
+        });
+        form.reset();
+        setSubmission(false);
+    }).catch((error) => {
+        toast({
+            title: 'Error sending message',
+            description: 'Please try again later.',
+            variant: 'destructive'
+        });
+        setSubmission(false);
+        console.error(error);
+    });
+}
     return (
         <section id="contact" className="py-24 relative bg-secondary/30">
             <div className="px-4">
@@ -58,35 +94,36 @@ export const ContactSection = () => {
                     </div>
                     {/* Contact Side */}
                     <div className="relative bg-button border border-primary rounded-2xl p-10">
-                        <form action="">
+                        <form onSubmit={handleSubmit}>
                             <h2 className="text-3xl text-background mb-4 font-extrabold text-center">Start A Conversation</h2>
                             <p className="text-primary text-center text-lg mb-8">Fill out the form below and I'll get back to you soon</p>
                             {/* top fields */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <div>
                                     <label htmlFor="name" className="text-sm font-bold text-primary mb-2 block">Full Name</label>
-                                    <input type="text" placeholder="Your Name..." id="name" name="name" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                                    <input type="text" placeholder="Your Name..." id="name" name="name" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:text-primary/70" />
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="text-sm font-bold text-primary mb-2 block">Email</label>
-                                    <input type="email" placeholder="Your Name..." id="email" name="email" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                                    <input type="email" placeholder="Your Name..." id="email" name="email" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:text-primary/70" />
                                 </div>
                             </div>
 
                             <div className="mb-8">
                                 <label htmlFor="subject" className="text-sm font-bold text-primary mb-2 block">Subject</label>
-                                <input type="text" placeholder="Subject" id="subject" name="subject" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                                <input type="text" placeholder="Subject" id="subject" name="subject" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:text-primary/70" />
                             </div>
                             <div className="mb-20">
                                 <label htmlFor="message" className="text-sm font-bold text-primary mb-2 block">Message</label>
-                                <textarea type="text" placeholder="Your Message..." id="message" name="message" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:primary/70" />
+                                <textarea type="text" placeholder="Your Message..." id="message" name="message" required className="w-full px-6 py-4 bg-background/70 border border-primary rounded-xl text-primary placeholder:text-primary/70" />
                             </div>
                             <button 
                             type="submit" 
-                            required
+                            disabled={inSubmission}
                             className="bg-background px-4 py-6 w-[80%] md:w-[60%] flex items-center justify-center gap-2 cursor-pointer mx-auto rounded-2xl hover:bg-primary hover:text-black transition-colors duration-300 font-bold text-lg"
                             >
-                                Send Message <Send size={16} />
+                                {inSubmission ? "Sending..." : "Send Message"}
+                                <Send size={16} />
                             </button>
                             
                         </form>
