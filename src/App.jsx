@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import { useEffect, useState } from "react";
 import { Loader } from "@/components/Loader";
+import { Toaster } from "@/components/popup/toaster"
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
   return (
     
     <ThemeProvider>
+      <Toaster />
         <BrowserRouter>
           {/* Wrapped in routes for all segues */}
           <Routes>
