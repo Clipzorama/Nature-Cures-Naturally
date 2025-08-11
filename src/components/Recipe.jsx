@@ -197,7 +197,7 @@ export const RecipeSection = () => {
 
   return (
     <section id="recipes" className="py-32 relative min-h-screen">
-        <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-10 font-bold">
+        <h1 className="px-2 md:px-4 text-center text-3xl text-card mb-5 font-bold">
             A Taste of My Food 🥣
         </h1>
 
@@ -257,7 +257,7 @@ export const RecipeSection = () => {
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.25, delay: 0.05 }}
-                        className="text-xl md:text-3xl font-bold text-primary text-center text-pretty"
+                        className="text-xl md:text-2xl font-bold text-primary text-pretty"
                         >
                         {dish.name}
                     </motion.h2>

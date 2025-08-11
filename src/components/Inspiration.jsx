@@ -7,7 +7,7 @@ export const Inspiration = () => {
   return (
     <section id="inspiration"className="py-32 relative min-h-screen">
       {/* Section Title */}
-        <h1 className="px-2 md:px-4 text-center text-3xl md:text-4xl text-card mb-15 font-bold">
+        <h1 className="px-2 md:px-4 text-center text-3xl text-card mb-15 font-bold">
             In Spirit & Inspiration 🕊️
         </h1>
 
@@ -17,12 +17,12 @@ export const Inspiration = () => {
                 <img
                 src={Hednick}
                 alt="Hednick"
-                className="w-full rounded-2xl object-cover shadow-lg"
+                className="w-full max-h-[650px] rounded-2xl object-cover shadow-lg"
                 />
             </div>
 
             {/* Punchy Hero Text */}
-            <p className="text-lg md:text-xl text-primary max-w-2xl mb-6">
+            <p className="text-lg text-primary max-w-2xl mb-6">
                 My son, Hednick, shared my love for the kitchen and dreamed of building
                 a business with me. His passion, kindness, and creativity inspire
                 every dish I make. Through this work, his spirit lives on bringing
@@ -41,7 +41,7 @@ export const Inspiration = () => {
             {showMore && (
                 <>
                     {/* Expanded Full Paragraph */}
-                    <div className="max-w-3xl text-primary text-lg md:text-xl space-y-4">
+                    <div className="max-w-3xl text-primary text-lg space-y-4">
                         <p>
                             Just like me, Hednick found his passion in the kitchen early on.
                             While attending Harry S. Truman High School in New York, he joined
