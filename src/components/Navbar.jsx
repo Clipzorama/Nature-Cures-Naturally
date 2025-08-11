@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LightSwitch } from "@/components/LightSwitch.jsx";
 import { Menu, X } from "lucide-react";
 import NCC from "@/assets/logo.png"
-import { cn } from "@/lib/utlis"
+import { cn } from "@/lib/utils"
 
 
 // will have to change this soon and add some new stuff

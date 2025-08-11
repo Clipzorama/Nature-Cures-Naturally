@@ -1,6 +1,6 @@
 import { Moon, Sun } from "lucide-react";
 import { enableTheme } from "@/context/ThemeProvider";
-import { cn } from "@/lib/utlis"
+import { cn } from "@/lib/utils"
 
 
 export const LightSwitch = ({ className = "" }) => {
