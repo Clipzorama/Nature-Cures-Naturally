@@ -25,14 +25,14 @@ function App() {
     
     <ThemeProvider>
       <Toaster />
-        <BrowserRouter>
-          {/* Wrapped in routes for all segues */}
-          <Routes>
-            <Route index element={<Home />} />
-            {/* React's version of a 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        {/* Wrapped in routes for all segues */}
+        <Routes>
+          <Route index element={<Home />} />
+          {/* React's version of a 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
     
   )

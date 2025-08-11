@@ -23,8 +23,8 @@ export const ContactSection = () => {
         'cUOI3JuKmxe5PWMEV'
     ).then(() => {
         toast({
-            title: 'Message sent successfully',
-            description: 'We will get back to you soon.',
+            title: 'Message sent successfully ✅',
+            description: 'We will get back to you soon!',
         });
         form.reset();
         setSubmission(false);
