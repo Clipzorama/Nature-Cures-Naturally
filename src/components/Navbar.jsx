@@ -31,7 +31,7 @@ export const NavBar = () => {
                 </a>
 
                 {/* For computers */}
-                <div className="hidden md:flex space-x-8">
+                <div className="hidden lg:flex space-x-8">
                     {navItems.map((item, key) => (
                         <a key={key}
                             href={item.href}
@@ -46,12 +46,12 @@ export const NavBar = () => {
 
                 <button
                 onClick={() => setMenuOpen((prev) => !prev)}
-                className="md:hidden p-2 text-foreground z-110"
+                className="lg:hidden p-2 text-foreground z-110"
                 aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}>
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
                 <div className={cn("fixed inset-0 min-h-screen bg-background/96 backdrop-blur-3xl z-100 flex flex-col items-center justify-center",
-                                       "transition-all duration-300 md:hidden",
+                                       "transition-all duration-300 lg:hidden",
                                        isMenuOpen 
                                        ? "opacity-100 pointer-events-auto" 
                                        : "opacity-0 pointer-events-none"
@@ -66,7 +66,7 @@ export const NavBar = () => {
                                     {item.name}
                                 </a>
                             ))}
-                            <LightSwitch className="block md:hidden self-center mt-2"/>
+                            <LightSwitch className="block lg:hidden self-center mt-2"/>
                     </div>
 
                 </div>
