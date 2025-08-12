@@ -8,7 +8,7 @@ export default function LeafRain({ count }) {
     const w = typeof window !== "undefined" ? window.innerWidth : 1200;
     if (count) return count;
     if (w >= 1280) return 90;       // desktop / xl
-    if (w >= 768)  return 60;       // tablet
+    if (w >= 768)  return 45;       // tablet
     return 30;                      // phones
   });
 
