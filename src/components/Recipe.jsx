@@ -201,7 +201,7 @@ export const RecipeSection = () => {
             A Taste of My Food 🥣
         </h1>
 
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
             <div className="relative rounded-2xl ring-1 ring-border bg-background/40 p-4 md:p-6">
                 {/* LEFT: fixed image frame (no layout shift) */}
