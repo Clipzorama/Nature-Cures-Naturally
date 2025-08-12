@@ -93,10 +93,10 @@ export const ContactSection = () => {
                         </div>
                     </div>
                     {/* Contact Side */}
-                    <div className="relative bg-button border border-primary rounded-2xl p-10">
+                    <div className="relative bg-button border border-primary rounded-2xl p-7">
                         <form onSubmit={handleSubmit}>
-                            <h2 className="text-3xl text-background mb-4 font-extrabold text-center">Start A Conversation</h2>
-                            <p className="text-primary text-center text-lg mb-8">Fill out the form below and I'll get back to you soon</p>
+                            <h2 className="text-3xl text-background mb-4 font-extrabold text-center text-pretty">Start A Conversation</h2>
+                            <p className="text-primary text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>
                             {/* top fields */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <div>
