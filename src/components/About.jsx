@@ -28,7 +28,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const AboutSection = () => {
     const isMobile = window.innerWidth <= 768; // or whatever breakpoint you want
-    const startPoint = isMobile ? "top 65%" : "top 85%";
+    const startPoint = isMobile ? "top 35%" : "top 90%";
 
     const healing = [
         {name: "Herbal Remedies", icon: Leaf},
@@ -108,7 +108,7 @@ export const AboutSection = () => {
             stagger: 0.15,
             scrollTrigger: {
                 trigger: ".title",
-                start: "top 65%",
+                start: startPoint,
                 toggleActions: "play none none none",
                 scrub: true,
         },
@@ -122,7 +122,7 @@ export const AboutSection = () => {
             stagger: 0.15,
             scrollTrigger: {
                 trigger: ".title2",
-                start: "top 65%",
+                start: startPoint,
                 toggleActions: "play none none none",
                 scrub: true,
         },
@@ -136,7 +136,7 @@ export const AboutSection = () => {
             stagger: 0.15,
             scrollTrigger: {
                 trigger: ".title3",
-                start: "top 65%",
+                start: startPoint,
                 toggleActions: "play none none none",
                 scrub: true,
         },
