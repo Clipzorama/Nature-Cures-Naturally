@@ -40,7 +40,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #69c069, #77dd77);
+  background: linear-gradient(90deg, #335a33, #2d682d);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   border-bottom: 5px solid #00000019;
   transform-origin: bottom;
@@ -51,7 +51,6 @@
 .tree div.stem span {
   position: absolute;
   top: 110px;
- /* updated top value */
   left: calc(50% - 7.5px);
   width: 15px;
   height: 50%;
@@ -71,4 +70,44 @@
   filter: blur(20px);
   transform-style: preserve-3d;
   transform: rotateX(90deg) translateZ(-65px);
+}
+
+.loader-vignette{
+  position:absolute; inset:0;
+  background: radial-gradient(80% 60% at 50% 50%,
+    color-mix(in oklab, hsl(var(--background)), black 10%) 0%,
+    hsl(var(--background)) 60%,
+    color-mix(in oklab, hsl(var(--background)), black 15%) 100%);
+  z-index: 0;
+}
+.loader-grain{
+  position:absolute; inset:0; z-index: 0;
+  background-size:140px 140px; mix-blend-mode: soft-light; opacity:.4;
+  animation: loaderGrain 8s linear infinite;
+}
+
+@keyframes loaderGrain { to { transform: translate(140px,-140px); } }
+
+.loader-logo{ width: 160px; max-width: 42vw; filter: drop-shadow(0 6px 20px rgba(0,0,0,.35)); }
+.loader-tagline{
+  font-size: clamp(14px, 2.4vw, 16px);
+  color: color-mix(in oklab, hsl(var(--primary)), transparent 10%);
+  letter-spacing:.02em;
+}
+
+.loader-progress{
+  width: clamp(220px, 44vw, 420px);
+  height: 6px;
+  background: color-mix(in oklab, hsl(var(--foreground)), transparent 85%);
+  border-radius: 999px; overflow:hidden;
+}
+.loader-bar{
+  height:100%;
+  background: linear-gradient(90deg, hsl(var(--primary)), color-mix(in oklab, hsl(var(--primary)), white 20%));
+  width:0%;
+}
+.loader-percent{
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  color: color-mix(in oklab, hsl(var(--foreground)), transparent 40%);
 }
