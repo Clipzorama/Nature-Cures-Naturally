@@ -1,7 +1,8 @@
-import Nicole from "@/assets/nicole.webp"
+import Nicole from "@/assets/nicole.webp";
+import Nicole2 from "@/assets/helper.JPG";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Leaf,
@@ -31,6 +32,13 @@ export const AboutSection = () => {
     const isTablet = window.innerWidth <= 1024; 
     const startPoint = isMobile ? "top 35%" : isTablet ? "top 40%" : "top 90%";
 
+    const headingRef = useRef(null);
+    const textRef = useRef(null);
+    const imageRef = useRef(null);
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const images = [Nicole, Nicole2]; // put your images here
+
     const healing = [
         {name: "Herbal Remedies", icon: Leaf},
         {name: "Whole Foods Nutrition", icon: Apple},
@@ -55,10 +63,36 @@ export const AboutSection = () => {
         {name: "Depression Studies Certificate", icon: Award},
     ]
 
-    const headingRef = useRef(null);
-    const textRef = useRef(null);
-    const imageRef = useRef(null);
+    // crossfade every 5s
+    useEffect(() => {
+    const id = setInterval(() => {
+        if (!imageRef.current) return;
 
+        // stop any ongoing tweens on the image to avoid conflicts from other animations
+        gsap.killTweensOf(imageRef.current);
+
+        gsap.to(imageRef.current, {
+        autoAlpha: 0,
+        duration: 0.35,
+        ease: "power1.out",
+        onComplete: () => {
+            // advance index + swap src
+            setCurrentIndex(prev => (prev + 1) % images.length);
+
+            // next tick to ensure src is applied
+            requestAnimationFrame(() => {
+            gsap.fromTo(
+                imageRef.current,
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 0.5, ease: "power1.out" }
+            );
+            });
+        },
+        });
+    }, 5000);
+
+    return () => clearInterval(id);
+    }, [images.length]);
 
 
     useGSAP(() => {
@@ -196,23 +230,30 @@ export const AboutSection = () => {
 
     return (
         <section id="about" className="py-28 relative min-h-screen">
-            <h1 ref={headingRef} className="px-2 md:px-4 text-center text-3xl text-header mb-20 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar 🪷</h1>
+            <h1 ref={headingRef} className="px-2 md:px-4 text-center text-3xl text-header mb-10 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar 🪷</h1>
             <div className="container flex flex-col items-center lg:items-start lg:flex-row lg: gap-10 md:gap-20">
 
                 {/* left side */}
                 <div className="flex flex-col w-[100%] md:w-[70%]" ref={textRef}>
                     <h2 className="text-primary text-3xl text-center">About Me ❤️</h2>
                     <p className="text-pretty text-primary text-md text-center mt-12 mb-8">
-                        Growing up in a family rooted in the land, I was raised on my mothers side of the family farm, where we grew our own fruits and vegetables. Everything we cooked came straight from the garden. 
-                        From as early as five years old, I was taught not only how to cook but also how to plant and care for the food we ate. My grandparents passed down this knowledge with love and care, teaching me how to live in harmony with nature.
+                        Fruits, vegetables, and herbs are like a food puzzle: when the right pieces come together, your meals become a masterpiece and your health follows. 
+                        I grew up on my family's farm, where dinner started in the soil. From age five, I learned to plant, tend, and cook with what we grew. When we were sick, 
+                        my grandmother reached for the garden first to obtain garlic, ginger, and other herbs to calm headaches, support blood pressure, and complement medical care. That hands-on wisdom guides everything I do today.
+
                     </p>
                     <p className="text-pretty text-primary text-md text-center mb-8">
-                        When we were sick, whether it was a cold, a headache, or even more chronic issues like high blood pressure, we didn't run to the hospital. My grandmother believed in the power of nature and would make healing remedies using herbs from our own garden. 
-                        She managed her diabetes and high blood pressure with natural remedies like garlic and ginger tea, and I was right there with her, learning every step of the way.
+                        I don't believe in deprivation or one-size-fits-all plans. We'll begin with your story, your health history, routines, preferences, culture, and goals, 
+                        and craft a plan that truly fits your life. If you love certain foods, we'll keep them. If you're busy, we'll simplify. If you've tried everything, we'll find what finally clicks.
+                        Real change isn't only about macros. It's mental, physical, emotional, and spiritual, each piece in balance. We'll pair nutrient-dense, delicious meals with practical habits, gentle accountability, 
+                        and evidence-informed guidance so you can see and feel steady progress.
+
                     </p>
                     <p className="text-pretty text-primary text-md text-center mb-8">
-                        I didn't just want to cook. I wanted to educate. I believe food is medicine, and what we eat should nourish and heal us. Our bodies are organic, and they thrive on what nature provides. 
-                        Nature Curious Naturally is my way of reconnecting people to the healing wisdom of food and sharing how a natural, holistic lifestyle can support lifelong health and wellness.
+                        Working together means a personalized meal plan built around what you enjoy, smart swaps and simple prep to make healthy eating easy, and herbal or whole-food strategies to support wellness where appropriate. 
+                        You'll have ongoing check-ins to keep you motivated and on track. Finding a diet is easy, but finding your way is the challenge, and that's where I come in. Let's put the right pieces together and build a sustainable 
+                        foundation that honors your body and your life. Don't wait on your health; start where you are, with what you have, and I'll help you get the rest of the way.
+
                     </p>
                     <div className="flex sm-flex-row gap-4 mt-4 justify-center">
                         <a href="#contact" className="px-4 py-2 rounded-1xl bg-button border border-primary text-primary hover:bg-button/60 transition-colors duration-300 font-extrabold">
@@ -226,7 +267,7 @@ export const AboutSection = () => {
                 </div>
                 {/* right side */}
                 <div className="flex flex-col w-[70%]">
-                    <img className="w-full max-h-[650px] object-contain rounded-2xl" ref={imageRef} src={Nicole} alt="My Picture" />
+                    <img className="w-full max-h-[650px] object-contain rounded-2xl" ref={imageRef} src={images[currentIndex]} alt="My Picture" />
                 </div>
             </div>
             {/* Clean card concept ill add here */}
