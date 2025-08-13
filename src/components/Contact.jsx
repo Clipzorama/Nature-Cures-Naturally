@@ -60,15 +60,15 @@ export const ContactSection = () => {
                             <div className="space-y-6">
                                 <div className="flex items-center space-x-4">
                                     <Mail size={24} className="text-[hsl(37,39%,53%)]" />
-                                    <span className="text-[hsl(37,39%,53%)]">Naturecuresnaturally1@gmail.com</span>
+                                    <span className="text-[hsl(37,39%,53%)] text-sm md:text-lg">Naturecuresnaturally1@gmail.com</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <Phone size={24} className="text-[hsl(98,48%,61%)]" />
-                                    <span className="text-[hsl(98,48%,61%)]">+1 (929) 900 6536</span>
+                                    <span className="text-[hsl(98,48%,61%)] text-sm md:text-lg">+1 (929) 900 6536</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <MapPin size={24} className="text-[hsl(91,20%,63%)]" />
-                                    <span className="text-[hsl(91,20%,63%)]">Rooted in New York & Derby, Connecticut 🌿</span>
+                                    <MapPin size={27} className="text-[hsl(91,20%,63%)]" />
+                                    <span className="text-[hsl(91,20%,63%)] text-sm md:text-lg">Rooted in New York & Derby, Connecticut 🌿</span>
                                 </div>
 
                             </div>
@@ -96,7 +96,7 @@ export const ContactSection = () => {
                     <div className="relative bg-button border border-primary rounded-2xl p-7">
                         <form onSubmit={handleSubmit}>
                             <h2 className="text-3xl text-header mb-4 font-extrabold text-center text-pretty">Start A Conversation</h2>
-                            <p className="text-primary opacity-80 text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>
+                            <p className="text-foreground opacity-80 text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>
                             {/* top fields */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <div>

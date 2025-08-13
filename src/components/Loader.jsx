@@ -6,19 +6,22 @@ import logoPng from "@/assets/logo.png"; // your PNG logo
 
 gsap.registerPlugin(useGSAP);
 
+// external progress - tracking and displaying the progress of operations or processes that are managed outside of a specific React component's internal state
+
 export const Loader = ({ progress: externalProgress }) => {
   const rootRef = useRef(null);
   const logoRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
-  // If no real progress is passed, simulate one
   useEffect(() => {
     if (typeof externalProgress === "number") {
       setProgress(Math.max(0, Math.min(100, Math.floor(externalProgress))));
       return;
     }
+    // if external progress is not provided, we simulate it ourselves here
     let p = 0;
     const id = setInterval(() => {
+      // nice easing effect --> big jumps and then slows down as we approach 100
       p += Math.max(0.3, (100 - p) * 0.06);
       if (p >= 99) {
         p = 99;
@@ -56,57 +59,17 @@ export const Loader = ({ progress: externalProgress }) => {
   return (
     <div
       ref={rootRef}
-      className="container relative min-h-screen min-w-screen flex flex-col items-center justify-center bg-[hsl(130,26%,9%)] overflow-hidden"
+      className="container relative min-h-screen min-w-screen flex flex-col items-center justify-center bg-background overflow-hidden"
     >
-      {/* Vignette + grain */}
-      <div className="loader-vignette pointer-events-none" />
-      <div className="loader-grain pointer-events-none" />
-
-      {/* Tree animation */}
-      <div className="content mb-30 relative z-10">
-        <div className="tree">
-          <div className="branch" style={{ "--x": 0 }}>
-            <span style={{ "--i": 0 }}></span>
-            <span style={{ "--i": 1 }}></span>
-            <span style={{ "--i": 2 }}></span>
-            <span style={{ "--i": 3 }}></span>
-          </div>
-          <div className="branch" style={{ "--x": 1 }}>
-            <span style={{ "--i": 0 }}></span>
-            <span style={{ "--i": 1 }}></span>
-            <span style={{ "--i": 2 }}></span>
-            <span style={{ "--i": 3 }}></span>
-          </div>
-          <div className="branch" style={{ "--x": 2 }}>
-            <span style={{ "--i": 0 }}></span>
-            <span style={{ "--i": 1 }}></span>
-            <span style={{ "--i": 2 }}></span>
-            <span style={{ "--i": 3 }}></span>
-          </div>
-          <div className="branch" style={{ "--x": 3 }}>
-            <span style={{ "--i": 0 }}></span>
-            <span style={{ "--i": 1 }}></span>
-            <span style={{ "--i": 2 }}></span>
-            <span style={{ "--i": 3 }}></span>
-          </div>
-          <div className="stem">
-            <span style={{ "--i": 0 }}></span>
-            <span style={{ "--i": 1 }}></span>
-            <span style={{ "--i": 2 }}></span>
-            <span style={{ "--i": 3 }}></span>
-          </div>
-          <span className="shadow"></span>
-        </div>
-      </div>
-
       {/* Logo + tagline + progress */}
-      <div className="absolute bottom-10 z-10 flex flex-col items-center gap-3 px-4 text-center">
+      <div className=" z-10 flex flex-col items-center gap-3 px-4 text-center">
         <img ref={logoRef} src={logoPng} alt="Nature Cures Naturally" className="loader-logo" />
         <p className="loader-tagline">Nature Cures Naturally</p>
 
         <div
           className="loader-progress"
           role="progressbar"
+          // Accessible to those who rely on screen readers
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={progress}
