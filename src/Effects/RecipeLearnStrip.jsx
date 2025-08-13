@@ -29,7 +29,7 @@ export default function RecipeLearnStrip({ active = true }) {
   return (
     <div
       className="
-        mask-edges-lg mt-20 rounded-2xl border border-border
+        mask-edges-lg mt-20 rounded-2xl border-2 border-primary
         bg-background/70 overflow-hidden
       "
     >

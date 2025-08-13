@@ -41,7 +41,7 @@ export const ContactSection = () => {
     return (
         <section id="contact" className="py-24 relative bg-secondary/30">
             <div className="px-4">
-                <h2 className="text-4xl font-bold mb-4 text-center text-card">
+                <h2 className="text-4xl font-bold mb-4 text-center text-header">
                     Get In Touch 💌
                 </h2>
                 <p className="text-center text-pretty text-lg text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
@@ -53,14 +53,14 @@ export const ContactSection = () => {
                     <div className="space-y-10">
                         {/* 1st Box */}
                         <div className="relative bg-button p-8 border border-primary rounded-2xl">
-                            <h2 className="text-3xl text-background mb-4 font-extrabold ">Let's Connect</h2>
-                            <p className="text-pretty text-md mb-10">Whether you're seeking natural solutions, 
+                            <h2 className="text-3xl text-header mb-4 font-extrabold ">Let's Connect</h2>
+                            <p className="text-pretty text-md mb-10 text-foreground opacity-80">Whether you're seeking natural solutions, 
                                 nutritional guidance, let's take the next step together.
                             </p>
                             <div className="space-y-6">
                                 <div className="flex items-center space-x-4">
-                                    <Mail size={24} className="text-[hsl(37,66%,64%)]" />
-                                    <span className="text-[hsl(37,66%,64%)]">Naturecuresnaturally1@gmail.com</span>
+                                    <Mail size={24} className="text-[hsl(37,39%,53%)]" />
+                                    <span className="text-[hsl(37,39%,53%)]">Naturecuresnaturally1@gmail.com</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <Phone size={24} className="text-[hsl(98,48%,61%)]" />
@@ -75,12 +75,12 @@ export const ContactSection = () => {
                         </div>
                         {/* 2nd Box */}
                         <div className="relative bg-button p-8 border border-primary rounded-2xl">
-                            <h2 className="text-3xl text-background mb-4 font-extrabold text-center">Follow My Jouney</h2>
+                            <h2 className="text-3xl text-header mb-4 font-extrabold text-center">Follow My Jouney</h2>
                             {/* div of the links */}
                             <div className="flex justify-center gap-4">
                                 <a href="https://www.facebook.com/Nicolewynaar1" target="_blank" 
                                 className="relative w-40 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 p-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                                    <svg role="img" className="w-8 h-8 text-primary mx-auto" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+                                    <svg role="img" className="w-8 h-8 text-white mx-auto" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
                                 </a>
                                 <a href="https://www.linkedin.com/in/nicole-wynaar-465a6b364/" target="_blank" 
                                 className="relative w-40 bg-gradient-to-r from-cyan-600 to-cyan-800 hover:from-cyan-500 hover:to-cyan-700 p-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
@@ -95,8 +95,8 @@ export const ContactSection = () => {
                     {/* Contact Side */}
                     <div className="relative bg-button border border-primary rounded-2xl p-7">
                         <form onSubmit={handleSubmit}>
-                            <h2 className="text-3xl text-background mb-4 font-extrabold text-center text-pretty">Start A Conversation</h2>
-                            <p className="text-primary text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>
+                            <h2 className="text-3xl text-header mb-4 font-extrabold text-center text-pretty">Start A Conversation</h2>
+                            <p className="text-primary opacity-80 text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>
                             {/* top fields */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 <div>

@@ -7,7 +7,7 @@ export const Inspiration = () => {
   return (
     <section id="inspiration"className="py-32 relative min-h-screen">
       {/* Section Title */}
-        <h1 className="px-2 md:px-4 text-center text-3xl text-card mb-15 font-bold">
+        <h1 className="px-2 md:px-4 text-center text-3xl text-header mb-15 font-bold">
             In Spirit & Inspiration 🕊️
         </h1>
 
@@ -33,7 +33,7 @@ export const Inspiration = () => {
             {!showMore && (
                 <button
                 onClick={() => setShowMore(true)}
-                className="px-6 py-2 bg-button border border-primary text-primary rounded-full hover:opacity-70 transition duration-300 cursor-pointer">
+                className="px-6 py-2 bg-button border border-primary text-primary rounded-full hover:opacity-70 transition duration-300 cursor-pointer font-extrabold">
                     Learn More
                 </button>
             )}
@@ -67,7 +67,7 @@ export const Inspiration = () => {
                     {/* Show Less Button */}
                     <button
                     onClick={() => setShowMore(false)}
-                    className="mt-6 px-6 py-2 bg-button border border-primary text-primary rounded-full hover:opacity-70 transition duration-300 cursor-pointer">
+                    className="mt-6 px-6 py-2 bg-button border border-primary text-primary rounded-full hover:opacity-70 transition duration-300 cursor-pointer font-extrabold">
                         Show Less
                     </button>
                 </>

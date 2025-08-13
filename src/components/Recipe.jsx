@@ -197,13 +197,13 @@ export const RecipeSection = () => {
 
   return (
     <section id="recipes" className="py-32 relative min-h-screen">
-        <h1 className="px-2 md:px-4 text-center text-3xl text-card mb-5 font-bold">
+        <h1 className="px-2 md:px-4 text-center text-3xl text-header mb-5 font-bold">
             A Taste of My Food 🥣
         </h1>
 
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
-            <div className="relative rounded-2xl ring-1 ring-border bg-background/40 p-4 md:p-6">
+            <div className="relative rounded-2xl ring-2 ring-primary bg-background/40 p-4 md:p-6">
                 {/* LEFT: fixed image frame (no layout shift) */}
                 <div className="relative w-full rounded-xl overflow-hidden mx-auto aspect-square">
                   {dishes.map((d, idx) => (
@@ -222,7 +222,7 @@ export const RecipeSection = () => {
                 <div className="mt-4 flex items-center justify-between">
                     <button
                         onClick={prev}
-                        className="rounded-xl border border-border bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
+                        className="rounded-xl border-2 border-primary bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
                         aria-label="Previous recipe"
                         >
                         <div className="flex items-center gap-1 cursor-pointer">
@@ -235,7 +235,7 @@ export const RecipeSection = () => {
                     </span>
                     <button
                         onClick={next}
-                        className="rounded-xl border border-border bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
+                        className="rounded-xl border-2 border-primary bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
                         aria-label="Next recipe">
                         <div className="flex items-center gap-1 cursor-pointer">
                             Next <ChevronRight size={18} />
@@ -252,7 +252,7 @@ export const RecipeSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="flex flex-col rounded-2xl border border-border bg-background/30 p-6 md:p-8">
+                    className="flex flex-col rounded-2xl ring-2 ring-primary bg-background/30 p-6 md:p-8">
                     <motion.h2
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -333,7 +333,7 @@ export const RecipeSection = () => {
                         className="mt-auto pt-6 flex gap-3">
                         <button
                             onClick={next}
-                            className="rounded-xl text-primary border border-border px-4 py-2 text-sm hover:bg-button transition-colors duration-300 cursor-pointer">
+                            className="rounded-xl text-primary border-2 border-primary px-4 py-2 text-sm hover:bg-button transition-colors duration-300 cursor-pointer">
                             Next Recipe →
                         </button>
                     </motion.div>
@@ -348,7 +348,7 @@ export const RecipeSection = () => {
             <button
                 key={d.id}
                 onClick={() => setI(idx)}
-                className={`rounded-xl border-2 border-border bg-background/30 p-2 hover:border-button transition-colors duration-300 cursor-pointer ${
+                className={`rounded-xl border-2 border-primary bg-background/30 p-2 hover:border-button transition-colors duration-300 cursor-pointer ${
                 idx === i ? "border-none ring-2 ring-button" : ""
                 }`}
                 aria-label={`View ${d.name}`}

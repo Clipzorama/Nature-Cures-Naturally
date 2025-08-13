@@ -16,6 +16,7 @@
 
 
     --color-card: hsl(var(--card));
+    --color-header: hsl(var(--header));
 
     --animate-fade-in: fade-in 0.7s ease-out forwards;
     --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
@@ -27,35 +28,39 @@
 
 @layer base {
     :root {
-        --background: 67, 19%, 72%;
-        --foreground: 222 47% 11%;
 
-        --card: 0 0% 90%;
-        --primary: 250 27% 30%;
-        --primary-foreground: 210 40% 98%;
-        --border: 214 32% 91%;
+      --background: 40 20% 90%;          /* soft warm beige, slightly darker for contrast */
+      --foreground: 222 40% 12%;         /* dark navy for readability */
 
-        --button: 27, 73%, 20%;
-        
-        --animate-fade-in: fade-in 0.7s ease-out forwards;
-        --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-        --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-        --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
-        --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-        --animate-fade-in-delay-5: fade-in 0.7s ease-out 1.0s forwards;
+      --card: 210 25% 96%;               /* soft cool gray-blue for contrast with warm background */
+      --primary: 210 35% 35%;            /* muted deep blue for accents */
+      --primary-foreground: 0 0% 100%;   /* white text on primary */
+      --border: 210 15% 78%;             /* subtle cool border */
+
+      --button: 140 30% 40%; 
+      --header: 210 35% 30%;           /* muted berry-pink for warmth and standout CTA */            /* warm orange-gold button */
+      
+      --animate-fade-in: fade-in 0.7s ease-out forwards;
+      --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
+      --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
+      --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+      --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+      --animate-fade-in-delay-5: fade-in 0.7s ease-out 1.0s forwards;
 
     } 
 
     .dark {
-        --background: 130 26% 9%;
-        --foreground: 213 31% 91%;
 
-        --card: 30, 44%, 40%;
-        --primary: 46 15% 83%;
-        --primary-foreground: 213 31% 91%;
-        --border: 82 20% 62%;
+      --background: 130 26% 9%;
+      --foreground: 213 31% 91%;
 
-        --button: 27, 73%, 20%
+      --card: 30, 44%, 40%;
+      --primary: 46 15% 83%;
+      --primary-foreground: 213 31% 91%;
+      --border: 82 20% 62%;
+
+      --button: 25 30% 15%;
+      --header: 30, 44%, 50%;
 
     }
 
@@ -181,7 +186,7 @@
 
 /* Styling the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  @apply bg-card;
+  @apply bg-primary;
   border-radius: 5px;
 }
 
