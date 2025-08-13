@@ -62,7 +62,7 @@ export const Loader = ({ progress: externalProgress }) => {
       className="container relative min-h-screen min-w-screen flex flex-col items-center justify-center bg-background overflow-hidden"
     >
       {/* Logo + tagline + progress */}
-      <div className=" z-10 flex flex-col items-center gap-3 px-4 text-center">
+      <div className=" z-10 flex flex-col items-center gap-3 px-4 text-center scale-150">
         <img ref={logoRef} src={logoPng} alt="Nature Cures Naturally" className="loader-logo" />
         <p className="loader-tagline">Nature Cures Naturally</p>
 
