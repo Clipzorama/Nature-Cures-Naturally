@@ -1,6 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
 
 // Recipe Strip
 
@@ -165,11 +170,55 @@ const dishes = [
 ];
 
 export const RecipeSection = () => {
+  const isMobile = window.innerWidth <= 767; 
+  const isTablet = window.innerWidth <= 1024; 
+  const startPoint = isMobile ? "top 65%" : isTablet ? "top 60%" : "top 75%";
+  const startPoint2 = isMobile ? "top 65%" : isTablet ? "top 60%" : "top 75%";
+  const endPoint = isMobile ? "top 1%" : isTablet ? "top 10%" : "top 30%";
+  
+
+  gsap.registerPlugin(ScrollTrigger);
+
   const [i, setI] = useState(0);
   const dish = dishes[i];
 
   const next = () => setI((n) => (n + 1) % dishes.length);
   const prev = () => setI((n) => (n - 1 + dishes.length) % dishes.length);
+
+  const containerRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+
+// subtle scroll-in with scrub
+useGSAP(() => {
+  // left card
+  gsap.from(leftRef.current, {
+    opacity: 0,
+    x: -30,
+    y: 12,
+    ease: "none",
+    scrollTrigger: {
+      trigger: containerRef.current,
+      start: startPoint,
+      end: "top 15%",
+      scrub: true,
+    },
+  });
+
+  // right card (wrap around your motion.div)
+  gsap.from(rightRef.current, {
+    opacity: 0,
+    x: 30,
+    y: 12,
+    ease: "none",
+    scrollTrigger: {
+      trigger: containerRef.current,
+      start: startPoint2,
+      end: endPoint,
+      scrub: true,
+    },
+  });
+  }, { scope: containerRef, dependencies: [] });
 
   // arrow keys for the images and the info for it 
   useEffect(() => {
@@ -201,10 +250,10 @@ export const RecipeSection = () => {
             A Taste of My Food 🥣
         </h1>
 
-        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <div ref={containerRef} className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
-            <div className="relative rounded-2xl ring-2 ring-primary bg-background/40 p-4 md:p-6">
-                {/* LEFT: fixed image frame (no layout shift) */}
+            {/* LEFT: fixed image frame (no layout shift) */}
+            <div ref={leftRef} className="relative rounded-2xl ring-2 ring-primary bg-background/40 p-4 md:p-6">
                 <div className="relative w-full rounded-xl overflow-hidden mx-auto aspect-square">
                   {dishes.map((d, idx) => (
                   <img
@@ -244,102 +293,103 @@ export const RecipeSection = () => {
                 </div>
             </div>
 
-            {/* Right Side */}
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={dish.id} 
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="flex flex-col rounded-2xl ring-2 ring-primary bg-background/30 p-6 md:p-8">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.25, delay: 0.05 }}
-                        className="text-xl md:text-2xl font-bold text-primary text-pretty"
-                        >
-                        {dish.name}
-                    </motion.h2>
+            <div ref={rightRef} className="flex h-full" style={{ willChange: "opacity" }}>          
+              {/* Right Side */}
+              <AnimatePresence mode="wait">
+                  <motion.div
+                      key={dish.id} 
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="flex flex-col rounded-2xl ring-2 ring-primary bg-background/30 p-6 md:p-8">
+                      <motion.h2
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.25, delay: 0.05 }}
+                          className="text-xl md:text-2xl font-bold text-primary text-pretty"
+                          >
+                          {dish.name}
+                      </motion.h2>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.25, delay: 0.1 }}
-                        className="mt-3 text-foreground/80 text-md md:text-lg text-pretty "
-                        >
-                        {dish.intro}
-                    </motion.p>
+                      <motion.p
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.25, delay: 0.1 }}
+                          className="mt-3 text-foreground/80 text-md md:text-lg text-pretty "
+                          >
+                          {dish.intro}
+                      </motion.p>
 
-                        {/* Tags */}
-                    <motion.div
-                        initial="hidden"
-                        animate="show"
-                        variants={{
-                            hidden: { opacity: 0, y: 6 },
-                            show: { opacity: 1, y: 0, transition: { staggerChildren: 0.05, delayChildren: 0.12 } },
-                        }}
-                        className="mt-4 flex flex-wrap gap-2"
-                        >
-                        {dish.tags.map((t) => (
-                            <motion.span
-                            key={t}
-                            variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                            className="inline-flex items-center rounded-full border border-primary bg-button px-3 py-1 text-xs md:text-1xl text-foreground"
-                            >
-                            {t}
-                            </motion.span>
-                        ))}
-                    </motion.div>
+                          {/* Tags */}
+                      <motion.div
+                          initial="hidden"
+                          animate="show"
+                          variants={{
+                              hidden: { opacity: 0, y: 6 },
+                              show: { opacity: 1, y: 0, transition: { staggerChildren: 0.05, delayChildren: 0.12 } },
+                          }}
+                          className="mt-4 flex flex-wrap gap-2"
+                          >
+                          {dish.tags.map((t) => (
+                              <motion.span
+                              key={t}
+                              variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
+                              className="inline-flex items-center rounded-full border border-primary bg-button px-3 py-1 text-xs md:text-1xl text-foreground"
+                              >
+                              {t}
+                              </motion.span>
+                          ))}
+                      </motion.div>
 
-                        {/* Ingredients & benefits */}
-                    <div className="mt-6">
-                        <motion.h3
-                            initial={{ opacity: 0, y: 6 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.25, delay: 0.18 }}
-                            className="font-semibold text-foreground mb-3">
-                            Ingredients & Benefits
-                        </motion.h3>
+                          {/* Ingredients & benefits */}
+                      <div className="mt-6">
+                          <motion.h3
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.25, delay: 0.18 }}
+                              className="font-semibold text-foreground mb-3">
+                              Ingredients & Benefits
+                          </motion.h3>
 
-                        <motion.ul
-                            initial="hidden"
-                            animate="show"
-                            variants={{
-                            hidden: { opacity: 0 },
-                            show: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.2 } },
-                            }}
-                            className="space-y-3">
-                            {dish.ingredients.map((ing) => (
-                            <motion.li
-                                key={ing.name}
-                                variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                                className="flex gap-3">
-                                  {/* bullet */}
-                                <div className="mt-2 w-2.5 h-2.5 rounded-full bg-primary" />
-                                <div>
-                                  <p className="font-sm text-foreground">{ing.name}</p>
-                                  <p className="text-xs text-foreground/70">{ing.benefit}</p>
-                                </div>
-                            </motion.li>
-                            ))}
-                        </motion.ul>
-                    </div>
+                          <motion.ul
+                              initial="hidden"
+                              animate="show"
+                              variants={{
+                              hidden: { opacity: 0 },
+                              show: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.2 } },
+                              }}
+                              className="space-y-3">
+                              {dish.ingredients.map((ing) => (
+                              <motion.li
+                                  key={ing.name}
+                                  variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
+                                  className="flex gap-3">
+                                    {/* bullet */}
+                                  <div className="mt-2 w-2.5 h-2.5 rounded-full bg-primary" />
+                                  <div>
+                                    <p className="font-sm text-foreground">{ing.name}</p>
+                                    <p className="text-xs text-foreground/70">{ing.benefit}</p>
+                                  </div>
+                              </motion.li>
+                              ))}
+                          </motion.ul>
+                      </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.25, delay: 0.28 }}
-                        className="mt-auto pt-6 flex gap-3">
-                        <button
-                            onClick={next}
-                            className="rounded-xl text-primary border-2 border-primary px-4 py-2 text-sm hover:bg-button transition-colors duration-300 cursor-pointer">
-                            Next Recipe →
-                        </button>
-                    </motion.div>
-                </motion.div>
-            </AnimatePresence>
-
+                      <motion.div
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.25, delay: 0.28 }}
+                          className="mt-auto pt-6 flex gap-3">
+                          <button
+                              onClick={next}
+                              className="rounded-xl text-primary border-2 border-primary px-4 py-2 text-sm hover:bg-button transition-colors duration-300 cursor-pointer">
+                              Next Recipe →
+                          </button>
+                      </motion.div>
+                  </motion.div>
+              </AnimatePresence>
+            </div>                       
         </div>
 
         {/* Thumbnails (also fixed size to avoid shifting) */}
