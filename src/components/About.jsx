@@ -27,8 +27,9 @@ gsap.registerPlugin(ScrollTrigger);
 // GSAP THE CARD CONCEPT TITLES
 
 export const AboutSection = () => {
-    const isMobile = window.innerWidth <= 768; // or whatever breakpoint you want
-    const startPoint = isMobile ? "top 35%" : "top 90%";
+    const isMobile = window.innerWidth <= 767; 
+    const isTablet = window.innerWidth <= 1024; 
+    const startPoint = isMobile ? "top 35%" : isTablet ? "top 40%" : "top 90%";
 
     const healing = [
         {name: "Herbal Remedies", icon: Leaf},
@@ -195,7 +196,7 @@ export const AboutSection = () => {
 
     return (
         <section id="about" className="py-28 relative min-h-screen">
-            <h1 ref={headingRef} className="px-2 md:px-4 text-center text-3xl text-card mb-20 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar 🪷</h1>
+            <h1 ref={headingRef} className="px-2 md:px-4 text-center text-3xl text-header mb-20 font-bold">With hands in the soil and heart in the kitchen, I'm Nicole Wynaar 🪷</h1>
             <div className="container flex flex-col items-center lg:items-start lg:flex-row lg: gap-10 md:gap-20">
 
                 {/* left side */}
@@ -214,11 +215,11 @@ export const AboutSection = () => {
                         Nature Curious Naturally is my way of reconnecting people to the healing wisdom of food and sharing how a natural, holistic lifestyle can support lifelong health and wellness.
                     </p>
                     <div className="flex sm-flex-row gap-4 mt-4 justify-center">
-                        <a href="#contact" className="px-4 py-2 rounded-1xl bg-button border border-primary text-primary hover:bg-button/60 transition-colors duration-300 font-medium">
+                        <a href="#contact" className="px-4 py-2 rounded-1xl bg-button border border-primary text-primary hover:bg-button/60 transition-colors duration-300 font-extrabold">
                             Connect
                         </a>
 
-                        <a href="/RESUME.pdf" download className="px-4 py-2 rounded-1xl border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 font-medium">
+                        <a href="/RESUME.pdf" download className="px-4 py-2 rounded-1xl border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 font-extrabold">
                             Download My CV
                         </a>
                     </div>
@@ -230,7 +231,7 @@ export const AboutSection = () => {
             </div>
             {/* Clean card concept ill add here */}
             <div className="flex flex-col items-center justify-center mt-20">
-                <h1 className="text-center text-3xl text-card mb-10 font-bold">The Tools That Nourish 🌸</h1>
+                <h1 className="text-center text-3xl text-header mb-10 font-bold">The Tools That Nourish 🌸</h1>
 
                 <section className="py-10">
                     {/* Healing Practices & Philosophies */}
