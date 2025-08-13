@@ -122,19 +122,6 @@ export const AboutSection = () => {
             },
         });
 
-        gsap.from(imageRef.current, {
-            opacity: 0,
-            scale: 0.9,
-            duration: 1.2,
-            scrollTrigger: {
-                trigger: imageRef.current,
-                start: "top 85%",
-                end: "top 1%",
-                toggleActions: "play none none none",
-                scrub: true,
-            },
-        });
-
         gsap.from(".title", {
             opacity: 0,
             rotationX: -90,
