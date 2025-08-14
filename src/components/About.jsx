@@ -42,7 +42,7 @@ export const AboutSection = () => {
     const healing = [
         {name: "Herbal Remedies", icon: Leaf},
         {name: "Whole Foods Nutrition", icon: Apple},
-        {name: "Plant-Based Healing", icon: Sprout},
+        {name: "Healthy Blogging", icon: Sprout},
         {name: "Mind & Body", icon: Brain},
         {name: "Emotional Wellbeing", icon: HeartPulse},
     ]
@@ -50,7 +50,7 @@ export const AboutSection = () => {
     const coaching = [
         {name: "Meal Planning", icon: ClipboardList},
         {name: "Detox Guidance", icon: Droplet},
-        {name: "Plant-Based Healing", icon: Salad},
+        {name: "Online Cooking Classes", icon: Salad},
         {name: "Lifestyle Coaching", icon: Smile},
         {name: "Mindful Eating", icon: Utensils},
     ]
