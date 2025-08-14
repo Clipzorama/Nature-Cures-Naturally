@@ -6,6 +6,7 @@ import { RecipeSection } from '@/components/Recipe';
 import { Inspiration } from '@/components/Inspiration';
 import { ContactSection } from '@/components/Contact';
 import LeafRain from "@/uimods/LeafRain";
+import { Footer } from '@/components/Footer';
 
 function Home() {
     return (
@@ -18,6 +19,7 @@ function Home() {
             <RecipeSection />
             <Inspiration />
             <ContactSection />
+            <Footer />
         </div>
     );
 }
