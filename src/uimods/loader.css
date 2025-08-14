@@ -24,7 +24,7 @@
 .loader-progress{
   width: clamp(220px, 44vw, 420px);
   height: 6px;
-  background: color-mix(in oklab, hsl(var(--foreground)), transparent 85%);
+  background: color-mix(in oklab, hsl(var(--primary)), transparent 85%);
   border-radius: 999px; overflow:hidden;
 }
 .loader-bar{
@@ -35,5 +35,5 @@
 .loader-percent{
   font-variant-numeric: tabular-nums;
   font-size: 14px;
-  color: color-mix(in oklab, hsl(var(--foreground)), transparent 40%);
+  color: color-mix(in oklab, hsl(var(--primary)), transparent 10%);
 }
