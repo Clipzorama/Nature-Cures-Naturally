@@ -25,7 +25,7 @@ function App() {
       {isLoading ? <Loader /> : (
         <>
           <Toaster />
-          <BrowserRouter>
+          <BrowserRouter basename="/Nature-Cures-Naturally">
           {/* Wrapped in routes for all segues */}
           <Routes>
             <Route index element={<Home />} />
