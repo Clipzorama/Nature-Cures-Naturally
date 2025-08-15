@@ -101,16 +101,10 @@ const dishes = [
       },
       { name: "Onion", benefit: "Vitamins + bioactives; overall wellness." },
       {
-        name: "Garlic",
-        benefit:
-          "Immune support; antibacterial, anti-inflammatory, antioxidant.",
-      },
-      {
         name: "Tomato",
         benefit:
           "Vitamins A/C/K + potassium; lycopene antioxidant for cell health.",
       },
-      { name: "Fresh herbs & spices", benefit: "Aroma + anti-oxidative support." },
     ],
   },
   {

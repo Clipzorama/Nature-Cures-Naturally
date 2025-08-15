@@ -30,14 +30,16 @@ gsap.registerPlugin(ScrollTrigger);
 export const AboutSection = () => {
     const isMobile = window.innerWidth <= 767; 
     const isTablet = window.innerWidth <= 1024; 
-    const startPoint = isMobile ? "top 35%" : isTablet ? "top 40%" : "top 90%";
     const startPointR = isMobile ? "top 60%" : isTablet ? "top 70%" : "top 90%";
+    const startPointA = isMobile ? "power1.out" : isTablet ? "power1.out" : "bounce";
+
+
 
 
     const headingRef = useRef(null);
     const textRef = useRef(null);
+    const imageRef = useRef(null);
 
-    const [currentIndex, setCurrentIndex] = useState(0);
     const images = [Nicole, Nicole2]; // put your images here
 
     const healing = [
@@ -84,6 +86,19 @@ export const AboutSection = () => {
             duration: 1,
             scrollTrigger: {
                 trigger: textRef.current,
+                start: "top 80%",
+                end: "top 35%",
+                toggleActions: "play none none none",
+                scrub: true,
+            },
+        });
+
+        gsap.from(imageRef.current, {
+            opacity: 0,
+            x: 100,
+            duration: 1,
+            scrollTrigger: {
+                trigger: imageRef.current,
                 start: "top 80%",
                 end: "top 35%",
                 toggleActions: "play none none none",
@@ -143,7 +158,7 @@ export const AboutSection = () => {
         y: 50,
         duration: 1.2,
         stagger: 0.1,
-        ease: "bounce",
+        ease: startPointA,
         scrollTrigger: {
             trigger: ".healer",
             start: startPointR,
@@ -159,7 +174,7 @@ export const AboutSection = () => {
         y: 50,
         duration: 1.2,
         stagger: 0.1,
-        ease: "bounce",
+        ease: startPointA,
         scrollTrigger: {
             trigger: ".coacher",
             start: startPointR,
@@ -175,7 +190,7 @@ export const AboutSection = () => {
         y: 50,
         duration: 1.2,
         stagger: 0.1,
-        ease: "bounce",
+        ease: startPointA,
         scrollTrigger: {
             trigger: ".certificer",
             start: startPointR,
@@ -226,7 +241,7 @@ export const AboutSection = () => {
                 </div>
                 {/* right side */}
                 <div className="flex flex-col w-[70%] h-[320px] md:h-[550px] lg:h-[650px] ">
-                    <img className="w-full max-h-[650px] object-contain rounded-2xl" src={Nicole} alt="My Picture" />
+                    <img className="w-full max-h-[650px] object-contain rounded-2xl" ref={imageRef} src={Nicole} alt="My Picture" />
                 </div>
             </div>
             {/* Clean card concept ill add here */}
