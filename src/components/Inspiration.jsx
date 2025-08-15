@@ -33,7 +33,7 @@ export const Inspiration = () => {
             {!showMore && (
                 <button
                 onClick={() => setShowMore(true)}
-                className="px-6 py-2 bg-button border border-primary text-primary rounded-full hover:opacity-70 transition duration-300 cursor-pointer font-extrabold">
+                className="px-6 py-2 bg-button border border-primary text-buttonw rounded-full hover:opacity-70 transition duration-300 cursor-pointer font-extrabold">
                     Learn More
                 </button>
             )}
@@ -67,7 +67,7 @@ export const Inspiration = () => {
                     {/* Show Less Button */}
                     <button
                     onClick={() => setShowMore(false)}
-                    className="mt-6 px-6 py-2 bg-button border border-primary text-primary rounded-full hover:opacity-70 transition duration-300 cursor-pointer font-extrabold">
+                    className="mt-6 px-6 py-2 bg-button border border-primary text-buttonw rounded-full hover:opacity-70 transition duration-300 cursor-pointer font-extrabold">
                         Show Less
                     </button>
                 </>

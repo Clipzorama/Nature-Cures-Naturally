@@ -211,7 +211,7 @@ export const AboutSection = () => {
 
                 {/* left side */}
                 <div className="flex flex-col w-[100%] md:w-[70%]" ref={textRef}>
-                    <h2 className="text-primary text-3xl text-center">About Me ❤️</h2>
+                    <h2 className="text-primary text-3xl text-center">About Me </h2>
                     <p className="text-pretty text-primary text-md text-center mt-12 mb-8">
                         Fruits, vegetables, and herbs are like a food puzzle: when the right pieces come together, your meals become a masterpiece and your health follows. 
                         I grew up on my family's farm, where dinner started in the soil. From age five, I learned to plant, tend, and cook with what we grew. When we were sick, 
@@ -232,7 +232,7 @@ export const AboutSection = () => {
 
                     </p>
                     <div className="flex sm-flex-row gap-4 mt-4 justify-center">
-                        <a href="#contact" className="px-4 py-2 rounded-1xl bg-button border border-primary text-primary hover:bg-button/60 transition-colors duration-300 font-extrabold">
+                        <a href="#contact" className="px-4 py-2 rounded-1xl bg-button border border-primary text-buttonw hover:bg-button/60 transition-colors duration-300 font-extrabold">
                             Connect
                         </a>
 

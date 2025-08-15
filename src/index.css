@@ -13,6 +13,7 @@
 
     --color-button: hsl(var(--button));
     --color-contact: hsl(var(--contact));
+    --color-buttonw: hsl(var(--buttonw));
 
 
 
@@ -30,17 +31,18 @@
 @layer base {
     :root {
 
-      --background: 40 20% 90%;          /* soft warm beige, slightly darker for contrast */
-      --foreground: 222 40% 12%;         /* dark navy for readability */
+      --background: 40 20% 90%;        
+      --foreground: 222 40% 12%;        
 
-      --card: 210 25% 96%;               /* soft cool gray-blue for contrast with warm background */
-      --primary: 210 35% 35%;            /* muted deep blue for accents */
-      --primary-foreground: 0 0% 100%;   /* white text on primary */
-      --border: 210 15% 78%;             /* subtle cool border */
+      --card: 210 25% 96%;               
+      --primary: 210 35% 35%;            
+      --primary-foreground: 0 0% 100%;   
+      --border: 210 15% 78%;             
 
       --button: 140 30% 40%; 
       --header: 210 35% 30%;  
-      --contact: 307 50.5% 65.2%;         /* muted berry-pink for warmth and standout CTA */            /* warm orange-gold button */
+      --contact: 291, 21%, 58%;   
+      --buttonw: 307 50.6% 100%;    
       
       --animate-fade-in: fade-in 0.7s ease-out forwards;
       --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
@@ -56,6 +58,7 @@
       --background: 130 26% 9%;
       --foreground: 213 31% 91%;
 
+
       --card: 30, 44%, 40%;
       --primary: 46 15% 83%;
       --primary-foreground: 213 31% 91%;
@@ -63,9 +66,8 @@
 
       --button: 25 30% 15%;
       --header: 30, 44%, 50%;
-      --contact: 25 30% 15%;      /* muted berry-pink for warmth and standout CTA */            /* warm orange-gold button */
-
-      
+      --contact: 25 30% 15%; 
+      --buttonw: 307 50.6% 100%;          
 
     }
 
