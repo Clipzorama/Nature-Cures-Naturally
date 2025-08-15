@@ -43,6 +43,16 @@ const dishes = [
         name: "Boiled eggs",
         benefit: "Complete protein with essential vitamins and minerals.",
       },
+      {
+        name: "Tomato",
+        benefit:
+          "Vitamins A/C/K + potassium; lycopene antioxidant for cell health.",
+      },
+      {
+        name: "Garlic",
+        benefit:
+          "Immune support; antibacterial, anti-inflammatory, antioxidant.",
+      },
     ],
   },
   {

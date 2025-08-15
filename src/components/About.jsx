@@ -32,6 +32,8 @@ export const AboutSection = () => {
     const isTablet = window.innerWidth <= 1024; 
     const startPointR = isMobile ? "top 60%" : isTablet ? "top 70%" : "top 90%";
     const startPointA = isMobile ? "power1.out" : isTablet ? "power1.out" : "bounce";
+    const startPointS = isMobile ? false : isTablet ? true : true;
+
 
 
 
@@ -117,7 +119,7 @@ export const AboutSection = () => {
                 start: startPointR,
                 end: "top 30%",
                 toggleActions: "play none none none",
-                scrub: true,
+                scrub: startPointS,
         },
         });
 
@@ -132,7 +134,7 @@ export const AboutSection = () => {
                 start: startPointR,
                 end: "top 30%",
                 toggleActions: "play none none none",
-                scrub: true,
+                scrub: startPointS,
         },
         });
 
@@ -147,7 +149,7 @@ export const AboutSection = () => {
                 start: startPointR,
                 end: "top 30%",
                 toggleActions: "play none none none",
-                scrub: true,
+                scrub: startPointS,
         },
         });
 
@@ -164,7 +166,7 @@ export const AboutSection = () => {
             start: startPointR,
             end: "top 10%",
             toggleActions: "play none none none",
-            scrub: true,
+            scrub: startPointS,
         },
         });
 
@@ -180,7 +182,7 @@ export const AboutSection = () => {
             start: startPointR,
             end: "top 10%",
             toggleActions: "play none none none",
-            scrub: true,
+            scrub: startPointS,
         },
         });
 
@@ -196,7 +198,7 @@ export const AboutSection = () => {
             start: startPointR,
             end: "top 10%",
             toggleActions: "play none none none",
-            scrub: true,
+            scrub: startPointS,
         },
         });
 
