@@ -26,7 +26,7 @@ export const NavBar = () => {
                 <a className="text-xl font-bold text-primary flex items-center" href="#hero">
                     <img src={NCC} alt="Logo" className="w-10 h-10 mr-4 z-100" />
                     <span className="relative z-100 transition-colors text-md">
-                        <span className="text-foreground">NCC</span> Inc.
+                        <span className="text-foreground">NCN</span> LLC.
                     </span>
                 </a>
 

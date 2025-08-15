@@ -52,29 +52,29 @@ export const ContactSection = () => {
                     {/* Left Side */}
                     <div className="space-y-10">
                         {/* 1st Box */}
-                        <div className="relative bg-button p-8 border border-primary rounded-2xl">
+                        <div className="relative bg-contact p-8 border border-primary rounded-2xl">
                             <h2 className="text-3xl text-header mb-4 font-extrabold ">Let's Connect</h2>
                             <p className="text-pretty text-md mb-10 text-foreground opacity-80">Whether you're seeking natural solutions, 
                                 nutritional guidance, let's take the next step together.
                             </p>
                             <div className="space-y-6">
                                 <div className="flex items-center space-x-4">
-                                    <Mail size={24} className="text-[hsl(37,39%,53%)]" />
-                                    <span className="text-[hsl(37,39%,53%)] text-sm md:text-lg">Naturecuresnaturally1@gmail.com</span>
+                                    <Mail size={24} className="text-[hsl(38,31%,44%)]" />
+                                    <span className="text-[hsl(38,31%,44%)] text-sm md:text-lg">Naturecuresnaturally1@gmail.com</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <Phone size={24} className="text-[hsl(98,48%,61%)]" />
                                     <span className="text-[hsl(98,48%,61%)] text-sm md:text-lg">+1 (929) 900 6536</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <MapPin size={27} className="text-[hsl(91,20%,63%)]" />
-                                    <span className="text-[hsl(91,20%,63%)] text-sm md:text-lg">Rooted in New York & Derby, Connecticut 🌿</span>
+                                    <MapPin size={27} className="text-[hsl(92,14%,39%)]" />
+                                    <span className="text-[hsl(92,14%,39%)] text-sm md:text-lg">Rooted in New York & Derby, CT 🌿</span>
                                 </div>
 
                             </div>
                         </div>
                         {/* 2nd Box */}
-                        <div className="relative bg-button p-8 border border-primary rounded-2xl">
+                        <div className="relative bg-contact p-8 border border-primary rounded-2xl">
                             <h2 className="text-3xl text-header mb-4 font-extrabold text-center">Follow My Jouney</h2>
                             {/* div of the links */}
                             <div className="flex justify-center gap-4">
@@ -93,7 +93,7 @@ export const ContactSection = () => {
                         </div>
                     </div>
                     {/* Contact Side */}
-                    <div className="relative bg-button border border-primary rounded-2xl p-7">
+                    <div className="relative bg-contact border border-primary rounded-2xl p-7">
                         <form onSubmit={handleSubmit}>
                             <h2 className="text-3xl text-header mb-4 font-extrabold text-center text-pretty">Start A Conversation</h2>
                             <p className="text-foreground opacity-80 text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>

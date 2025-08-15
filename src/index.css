@@ -12,6 +12,7 @@
     --color-primary-foreground: hsl(var(--primary-foreground));
 
     --color-button: hsl(var(--button));
+    --color-contact: hsl(var(--contact));
 
 
 
@@ -38,7 +39,8 @@
       --border: 210 15% 78%;             /* subtle cool border */
 
       --button: 140 30% 40%; 
-      --header: 210 35% 30%;           /* muted berry-pink for warmth and standout CTA */            /* warm orange-gold button */
+      --header: 210 35% 30%;  
+      --contact: 307 50.5% 65.2%;         /* muted berry-pink for warmth and standout CTA */            /* warm orange-gold button */
       
       --animate-fade-in: fade-in 0.7s ease-out forwards;
       --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
@@ -61,6 +63,9 @@
 
       --button: 25 30% 15%;
       --header: 30, 44%, 50%;
+      --contact: 25 30% 15%;      /* muted berry-pink for warmth and standout CTA */            /* warm orange-gold button */
+
+      
 
     }
 
