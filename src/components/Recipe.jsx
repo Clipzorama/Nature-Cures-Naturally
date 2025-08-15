@@ -169,6 +169,11 @@ const dishes = [
           "Lean protein + omega-3s; B12, selenium, iodine for metabolism and thyroid.",
       },
       { name: "Fresh herbs & spices", benefit: "Flavor + phytonutrients." },
+      {
+        name: "Garlic",
+        benefit:
+          "Immune support; antibacterial, anti-inflammatory, antioxidant.",
+      },
     ],
   },
 ];
