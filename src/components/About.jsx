@@ -1,5 +1,5 @@
 import Nicole from "@/assets/nicole.webp";
-import Nicole2 from "@/assets/helper.JPG";
+import Nicole2 from "@/assets/helper.webp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState, useEffect } from "react";
@@ -34,9 +34,11 @@ export const AboutSection = () => {
 
     const headingRef = useRef(null);
     const textRef = useRef(null);
-    const imageRef = useRef(null);
-
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const wrapRef = useRef(null);
+    const topRef = useRef(null);
+    const bottomRef = useRef(null);
+    const [idx, setIdx] = useState(0);
+    const [showTop, setShowTop] = useState(true);
     const images = [Nicole, Nicole2]; // put your images here
 
     const healing = [
@@ -63,36 +65,55 @@ export const AboutSection = () => {
         {name: "Depression Studies Certificate", icon: Award},
     ]
 
-    // crossfade every 5s
     useEffect(() => {
-    const id = setInterval(() => {
-        if (!imageRef.current) return;
+        let t;
+        let cancelled = false;
 
-        // stop any ongoing tweens on the image to avoid conflicts from other animations
-        gsap.killTweensOf(imageRef.current);
-
-        gsap.to(imageRef.current, {
-        autoAlpha: 0,
-        duration: 0.35,
-        ease: "power1.out",
-        onComplete: () => {
-            // advance index + swap src
-            setCurrentIndex(prev => (prev + 1) % images.length);
-
-            // next tick to ensure src is applied
-            requestAnimationFrame(() => {
-            gsap.fromTo(
-                imageRef.current,
-                { autoAlpha: 0 },
-                { autoAlpha: 1, duration: 0.5, ease: "power1.out" }
-            );
+        const preload = (src) =>
+            new Promise((resolve) => {
+            const img = new Image();
+            img.src = src;
+            img.decode?.().catch(() => {}).finally(resolve);
             });
-        },
-        });
-    }, 5000);
 
-    return () => clearInterval(id);
-    }, [images.length]);
+        const tick = async () => {
+            const next = (idx + 1) % images.length;
+            const nextSrc = images[next];
+
+            // ensure decoded before swap to avoid jank
+            await preload(nextSrc);
+            if (cancelled) return;
+
+            const visible = showTop ? topRef.current : bottomRef.current;
+            const hidden  = showTop ? bottomRef.current : topRef.current;
+
+            if (hidden) hidden.src = nextSrc;   // set src on the hidden layer first
+
+            // instant swap (no animation)
+            if (visible) visible.style.opacity = "0";
+            if (hidden)  hidden.style.opacity  = "1";
+
+            setShowTop((v) => !v);
+            setIdx(next);
+
+            t = setTimeout(tick, 5000);
+        };
+
+        t = setTimeout(tick, 5000);
+
+        // pause/resume on tab visibility changes (optional but image-only)
+        const onVis = () => {
+            clearTimeout(t);
+            if (!document.hidden) t = setTimeout(tick, 5000);
+        };
+        document.addEventListener("visibilitychange", onVis);
+
+        return () => {
+            cancelled = true;
+            clearTimeout(t);
+            document.removeEventListener("visibilitychange", onVis);
+        };
+    }, [idx, images, showTop]);
 
 
     useGSAP(() => {
@@ -254,7 +275,30 @@ export const AboutSection = () => {
                 </div>
                 {/* right side */}
                 <div className="flex flex-col w-[70%]">
-                    <img className="w-full max-h-[650px] object-contain rounded-2xl" ref={imageRef} src={images[currentIndex]} alt="My Picture" />
+                    <div className="relative w-full max-h-[650px]">
+                        {/* bottom layer */}
+                        <img
+                        ref={bottomRef}
+                        src={images[(idx + 1) % images.length]}
+                        alt="My Picture"
+                        className="w-full max-h-[650px] object-contain rounded-2xl absolute inset-0"
+                        style={{ opacity: showTop ? 0 : 1, willChange: "opacity" }}
+                        decoding="async"
+                        loading="eager"
+                        width={1400} height={900}
+                        />
+                        {/* top layer */}
+                        <img
+                        ref={topRef}
+                        src={images[idx]}
+                        alt="My Picture"
+                        className="w-full max-h-[650px] object-contain rounded-2xl relative"
+                        style={{ opacity: showTop ? 1 : 0, willChange: "opacity" }}
+                        decoding="async"
+                        loading="eager"
+                        width={1400} height={900}
+                        />
+                    </div>
                 </div>
             </div>
             {/* Clean card concept ill add here */}
