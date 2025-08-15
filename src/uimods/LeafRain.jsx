@@ -9,7 +9,7 @@ export default function LeafRain({ count }) {
     if (count) return count;
     if (w >= 1280) return 90;       // desktop / xl
     if (w >= 768)  return 45;       // tablet
-    return 30;                      // phones
+    return 20;                      // phones
   });
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function LeafRain({ count }) {
       const w = window.innerWidth;
       const next =
         w >= 1280 ? 90 :
-        w >= 768  ? 60 :
+        w >= 768  ? 45 :
                     20;
       setLeafCount(prev => (prev === next ? prev : next));
     };
