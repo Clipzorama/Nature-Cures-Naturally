@@ -19,7 +19,7 @@ export default function LeafRain({ count }) {
       const next =
         w >= 1280 ? 90 :
         w >= 768  ? 60 :
-                    30;
+                    20;
       setLeafCount(prev => (prev === next ? prev : next));
     };
     onResize();
@@ -108,7 +108,6 @@ export default function LeafRain({ count }) {
           style={{
             position: "absolute",
             color: "rgba(63, 174, 109, 0.7)",
-            filter: "drop-shadow(0 2px 2px rgba(0,0,0,0.25))",
             willChange: "transform",
           }}
         >

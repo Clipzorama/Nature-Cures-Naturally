@@ -11,7 +11,7 @@ import { Footer } from '@/components/Footer';
 function Home() {
     return (
         <div className='min-h-screen bg-background text-primary overflow-x-hidden'>
-            <LeafRain count={50} />
+            <LeafRain />
             <LightSwitch className='fixed hidden lg:block top-30 right-6 z-50 p-2'/>
             <NavBar />
             <HeroSide />
