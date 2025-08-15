@@ -31,10 +31,11 @@ export const AboutSection = () => {
     const isMobile = window.innerWidth <= 767; 
     const isTablet = window.innerWidth <= 1024; 
     const startPoint = isMobile ? "top 35%" : isTablet ? "top 40%" : "top 90%";
+    const startPointR = isMobile ? "top 60%" : isTablet ? "top 70%" : "top 90%";
+
 
     const headingRef = useRef(null);
     const textRef = useRef(null);
-    const imageRef = useRef(null);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const images = [Nicole, Nicole2]; // put your images here
@@ -62,16 +63,6 @@ export const AboutSection = () => {
         {name: "Organic Meal Guides", icon: BookOpenCheck},
         {name: "Depression Studies Certificate", icon: Award},
     ]
-
-    useEffect(() => {
-        const id = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % images.length);
-        }, 5000);
-
-        return () => clearInterval(id);
-    }, [images.length]);
-
-
 
     useGSAP(() => {
         gsap.from(headingRef.current, {
@@ -108,7 +99,8 @@ export const AboutSection = () => {
             stagger: 0.15,
             scrollTrigger: {
                 trigger: ".title",
-                start: startPoint,
+                start: startPointR,
+                end: "top 30%",
                 toggleActions: "play none none none",
                 scrub: true,
         },
@@ -122,7 +114,8 @@ export const AboutSection = () => {
             stagger: 0.15,
             scrollTrigger: {
                 trigger: ".title2",
-                start: startPoint,
+                start: startPointR,
+                end: "top 30%",
                 toggleActions: "play none none none",
                 scrub: true,
         },
@@ -136,7 +129,8 @@ export const AboutSection = () => {
             stagger: 0.15,
             scrollTrigger: {
                 trigger: ".title3",
-                start: startPoint,
+                start: startPointR,
+                end: "top 30%",
                 toggleActions: "play none none none",
                 scrub: true,
         },
@@ -147,13 +141,13 @@ export const AboutSection = () => {
         gsap.from(".healer", {
         opacity: 0,
         y: 50,
-        duration: 0.5,
+        duration: 1.2,
         stagger: 0.1,
         ease: "bounce",
         scrollTrigger: {
             trigger: ".healer",
-            start: startPoint,
-            end: "top 15%",
+            start: startPointR,
+            end: "top 10%",
             toggleActions: "play none none none",
             scrub: true,
         },
@@ -163,13 +157,13 @@ export const AboutSection = () => {
         gsap.from(".coacher", {
         opacity: 0,
         y: 50,
-        duration: 1,
+        duration: 1.2,
         stagger: 0.1,
         ease: "bounce",
         scrollTrigger: {
             trigger: ".coacher",
-            start: startPoint,
-            end: "top 15%",
+            start: startPointR,
+            end: "top 10%",
             toggleActions: "play none none none",
             scrub: true,
         },
@@ -179,13 +173,13 @@ export const AboutSection = () => {
         gsap.from(".certificer", {
         opacity: 0,
         y: 50,
-        duration: 1,
+        duration: 1.2,
         stagger: 0.1,
         ease: "bounce",
         scrollTrigger: {
             trigger: ".certificer",
-            start: startPoint,
-            end: "top 15%",
+            start: startPointR,
+            end: "top 10%",
             toggleActions: "play none none none",
             scrub: true,
         },
@@ -232,7 +226,7 @@ export const AboutSection = () => {
                 </div>
                 {/* right side */}
                 <div className="flex flex-col w-[70%] h-[320px] md:h-[550px] lg:h-[650px] ">
-                    <img className="w-full max-h-[650px] object-contain rounded-2xl" ref={imageRef} src={images[currentIndex]} alt="My Picture" />
+                    <img className="w-full max-h-[650px] object-contain rounded-2xl" src={Nicole} alt="My Picture" />
                 </div>
             </div>
             {/* Clean card concept ill add here */}
