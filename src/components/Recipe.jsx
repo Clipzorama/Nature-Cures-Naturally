@@ -174,7 +174,7 @@ export const RecipeSection = () => {
   const isTablet = window.innerWidth <= 1024; 
   const startPoint = isMobile ? "top 65%" : isTablet ? "top 60%" : "top 75%";
   const startPoint2 = isMobile ? "top 65%" : isTablet ? "top 60%" : "top 75%";
-  const endPoint = isMobile ? "top 1%" : isTablet ? "top 10%" : "top 30%";
+  const endPoint = isMobile ? "top 25%" : isTablet ? "top 10%" : "top 30%";
   
 
   gsap.registerPlugin(ScrollTrigger);
@@ -200,7 +200,7 @@ useGSAP(() => {
     scrollTrigger: {
       trigger: containerRef.current,
       start: startPoint,
-      end: "top 15%",
+      end: endPoint,
       scrub: true,
     },
   });
