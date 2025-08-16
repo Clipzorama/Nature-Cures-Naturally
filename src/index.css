@@ -34,33 +34,6 @@
 @layer base {
     :root {
 
-      --background: 40 20% 90%;          
-      --foreground: 222 40% 12%;         
-
-      --card: 210 25% 96%;              
-      --primary: 210 35% 35%;            
-      --primary-foreground: 0 0% 100%;  
-      --border: 210 15% 78%;             
-
-      --button: 140 30% 40%; 
-      --header: 210 35% 30%;    
-      --contact: 291, 21%, 58%;   
-      --buttonw: 307 50.6% 100%;   
-      --email: 0 75% 25%;    
-      --num: 0 75% 25%;
-      --location: 0 75% 25%;
-            
-      --animate-fade-in: fade-in 0.7s ease-out forwards;
-      --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-      --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-      --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
-      --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-      --animate-fade-in-delay-5: fade-in 0.7s ease-out 1.0s forwards;
-
-    } 
-
-    .dark {
-
       --background: 130 26% 9%;
       --foreground: 213 31% 91%;
 
@@ -76,6 +49,34 @@
       --location: 91,20%,63%;
       --buttonw: 307 50.6% 100%;   
       --contact: 25 30% 15%; 
+            
+      --animate-fade-in: fade-in 0.7s ease-out forwards;
+      --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
+      --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
+      --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+      --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+      --animate-fade-in-delay-5: fade-in 0.7s ease-out 1.0s forwards;
+
+    } 
+
+    .light {
+
+      
+      --background: 40 20% 90%;          
+      --foreground: 222 40% 12%;         
+
+      --card: 210 25% 96%;              
+      --primary: 210 35% 35%;            
+      --primary-foreground: 0 0% 100%;  
+      --border: 210 15% 78%;             
+
+      --button: 140 30% 40%; 
+      --header: 210 35% 30%;    
+      --contact: 291, 21%, 58%;   
+      --buttonw: 307 50.6% 100%;   
+      --email: 0 75% 25%;    
+      --num: 0 75% 25%;
+      --location: 0 75% 25%;
 
     }
 
