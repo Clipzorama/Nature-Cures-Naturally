@@ -16,6 +16,7 @@
     --color-buttonw: hsl(var(--buttonw));
     --color-email: hsl(var(--email));
     --color-num: hsl(var(--num));
+    --color-location: hsl(var(--location));
 
 
 
@@ -45,9 +46,9 @@
       --header: 210 35% 30%;    
       --contact: 291, 21%, 58%;   
       --buttonw: 307 50.6% 100%;   
-      --email: 0 75% 25%;    /* Dark crimson red (serious, very readable) */
-      --num: 160 45% 30%;   /* Deep forest green (strong contrast, natural feel) */
-      --location: 220 60% 50%; /* Brighter calming blue */  
+      --email: 0 75% 25%;    
+      --num: 0 75% 25%;
+      --location: 0 75% 25%;
             
       --animate-fade-in: fade-in 0.7s ease-out forwards;
       --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
@@ -123,9 +124,9 @@
       animation: pulse-glow 3s ease-in-out infinite;
     }
 
-    @keyframes marqueeSlide {
+    @keyframes marqueeSlidePX {
       0%   { transform: translate3d(0,0,0); }
-      100% { transform: translate3d(-50%,0,0); } /* two runs = seamless loop */
+      100% { transform: translate3d(calc(var(--run-w) * -1), 0, 0); }
     }
 
 }
@@ -161,30 +162,25 @@
   animation: pulse-slow 4s ease-in-out infinite;
 }
 
-@utility marquee-track {
-  animation: marquee-x 28s linear infinite;
-  will-change: transform;
-}
 
-
-@utility mask-edges-lg {
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-
-@utility marquee-track {
-  will-change: transform;
-  contain: content;
-}
-
-@utility marquee-play {
-  animation: marqueeSlide 25s linear infinite;
+@utility marquee-play-dyn {
+  --marquee-duration: 25s;
+  animation: marqueeSlidePX var(--marquee-duration) linear infinite !important;
   animation-play-state: running;
 }
 
-@utility marquee-pause {
-  animation: marqueeSlide 25s linear infinite;
+@utility marquee-pause-dyn {
+  --marquee-duration: 25s;
+  animation: marqueeSlidePX var(--marquee-duration) linear infinite !important;
   animation-play-state: paused;
+}
+
+/* strip on media (changed the speed) */
+@media (max-width: 767px) {
+  .marquee-play-dyn,
+  .marquee-pause-dyn {
+    --marquee-duration: 20s; 
+  }
 }
 
 

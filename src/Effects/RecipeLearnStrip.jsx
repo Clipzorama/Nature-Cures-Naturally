@@ -1,3 +1,6 @@
+import React, { useEffect, useRef, useState } from "react";
+
+
 const PHRASES = [
   "Want To Make This Yourself?",
   "1:1 Cooking Lesson",
@@ -8,9 +11,9 @@ const PHRASES = [
   "Master The Recipe, Your Way!",
 ];
 
-function Run({ items, ariaHidden = false }) {
+const Run = React.forwardRef(function Run({ items, ariaHidden = false }, ref) {
   return (
-    <div aria-hidden={ariaHidden} className="flex flex-none items-center gap-10 pr-10">
+    <div ref={ref} aria-hidden={ariaHidden} className="flex flex-none items-center gap-10">
       {items.map((t, i) => (
         <div key={i} className="flex flex-none items-center gap-10">
           <span className="whitespace-nowrap text-lg md:text-2xl font-medium text-foreground/90 tracking-wide px-8">
@@ -21,23 +24,46 @@ function Run({ items, ariaHidden = false }) {
       ))}
     </div>
   );
-}
+});
 
 export default function RecipeLearnStrip({ active = true }) {
+  const runRef = useRef(null);
+  const trackRef = useRef(null);
+  const [runW, setRunW] = useState(0);
+
+  useEffect(() => {
+    if (!runRef.current) return;
+
+    const measure = () => {
+      const w = runRef.current.offsetWidth || 0;
+      setRunW(w);
+      if (trackRef.current) {
+        trackRef.current.style.setProperty("--run-w", `${w}px`);
+        trackRef.current.style.width = `${w * 2}px`; 
+      }
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(runRef.current);
+    window.addEventListener("resize", measure);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
   return (
-    <div
-      className="
-        mask-edges-lg mt-20 rounded-2xl border-2 border-primary
-        bg-background/70 overflow-hidden
-      "
-    >
+    <div className="mt-20 border-t-2 border-b-2 border-primary bg-background/70 overflow-hidden">
       <div
+        ref={trackRef}
         className={`
-          marquee-track flex min-w-[200%] whitespace-nowrap py-4
-          ${active ? "marquee-play" : "marquee-pause"}
+          marquee-track flex whitespace-nowrap py-4 px-10
+          ${active ? "marquee-play-dyn" : "marquee-pause-dyn"}
         `}
       >
-        <Run items={PHRASES} />
+        <Run ref={runRef} items={PHRASES} />
         <Run items={PHRASES} ariaHidden />
       </div>
     </div>

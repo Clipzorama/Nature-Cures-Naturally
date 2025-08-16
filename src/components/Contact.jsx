@@ -68,7 +68,7 @@ export const ContactSection = () => {
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <MapPin size={27} className="text-location" />
-                                    <span className="text-location text-sm md:text-lg">Rooted in New York & Derby, CT 🌿</span>
+                                    <span className="text-location text-sm md:text-lg">Rooted in New York & Connecticut</span>
                                 </div>
 
                             </div>

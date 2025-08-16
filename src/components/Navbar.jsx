@@ -4,9 +4,6 @@ import { Menu, X } from "lucide-react";
 import NCC from "@/assets/logo.png"
 import { cn } from "@/lib/utils"
 
-
-// will have to change this soon and add some new stuff
-
 const navItems = [
     {name: "Home", href: "#hero"},
     {name: "About", href: "#about"},

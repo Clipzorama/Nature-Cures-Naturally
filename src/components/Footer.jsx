@@ -39,7 +39,7 @@ export const Footer = () => {
               <Phone size={16} /> +1 (929) 900-6536
             </a>
             <p className="inline-flex items-center gap-2 text-muted-foreground">
-              <MapPin size={16} /> Derby, CT
+              <MapPin size={16} /> Connecticut
             </p>
           </div>
         </div>
