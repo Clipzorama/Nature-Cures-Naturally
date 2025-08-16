@@ -27,7 +27,6 @@ export default function LeafRain({ count }) {
     return () => window.removeEventListener("resize", onResize);
   }, [count]);
 
-  // render exactly `leafCount` leaves
   const leaves = useMemo(
     () => Array.from({ length: leafCount }, (_, i) => i),
     [leafCount]
