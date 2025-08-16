@@ -340,7 +340,7 @@ useGSAP(() => {
                               <motion.span
                               key={t}
                               variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                              className="inline-flex items-center rounded-full border border-primary bg-button px-3 py-1 text-xs md:text-1xl text-foreground"
+                              className="inline-flex items-center rounded-full border border-primary bg-button px-3 py-1 text-xs md:text-1xl text-white"
                               >
                               {t}
                               </motion.span>
