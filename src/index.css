@@ -14,6 +14,8 @@
     --color-button: hsl(var(--button));
     --color-contact: hsl(var(--contact));
     --color-buttonw: hsl(var(--buttonw));
+    --color-email: hsl(var(--email));
+    --color-num: hsl(var(--num));
 
 
 
@@ -31,19 +33,22 @@
 @layer base {
     :root {
 
-      --background: 40 20% 90%;        
-      --foreground: 222 40% 12%;        
+      --background: 40 20% 90%;          
+      --foreground: 222 40% 12%;         
 
-      --card: 210 25% 96%;               
+      --card: 210 25% 96%;              
       --primary: 210 35% 35%;            
-      --primary-foreground: 0 0% 100%;   
+      --primary-foreground: 0 0% 100%;  
       --border: 210 15% 78%;             
 
       --button: 140 30% 40%; 
-      --header: 210 35% 30%;  
+      --header: 210 35% 30%;    
       --contact: 291, 21%, 58%;   
-      --buttonw: 307 50.6% 100%;    
-      
+      --buttonw: 307 50.6% 100%;   
+      --email: 40 30% 40%;     /* Warm earthy tone (muted amber-brown) */
+      --num: 150 35% 35%;      /* Balanced green with depth */
+      --location: 210 35% 30%; /* Muted deep blue to tie with primary */       
+            
       --animate-fade-in: fade-in 0.7s ease-out forwards;
       --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
       --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
@@ -58,7 +63,6 @@
       --background: 130 26% 9%;
       --foreground: 213 31% 91%;
 
-
       --card: 30, 44%, 40%;
       --primary: 46 15% 83%;
       --primary-foreground: 213 31% 91%;
@@ -66,8 +70,11 @@
 
       --button: 25 30% 15%;
       --header: 30, 44%, 50%;
+      --email: 37,39%,53%;
+      --num: 98,48%,61%;
+      --location: 91,20%,63%;
+      --buttonw: 307 50.6% 100%;   
       --contact: 25 30% 15%; 
-      --buttonw: 307 50.6% 100%;          
 
     }
 
