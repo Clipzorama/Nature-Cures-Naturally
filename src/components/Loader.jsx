@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import "@/uimods/loader.css";
-import logoPng from "@/assets/logo.png"; // your PNG logo
+import logoPng from "@/assets/logo.png"; 
 
 gsap.registerPlugin(useGSAP);
 
@@ -33,7 +33,6 @@ export const Loader = ({ progress: externalProgress }) => {
   }, [externalProgress]);
 
   useGSAP(() => {
-    // Logo “breath”
     gsap.fromTo(
       logoRef.current,
       { opacity: 0, scale: 0.98, filter: "drop-shadow(0 0 0 rgba(255,255,200,0))" },

@@ -59,16 +59,16 @@ export const ContactSection = () => {
                             </p>
                             <div className="space-y-6">
                                 <div className="flex items-center space-x-4">
-                                    <Mail size={24} className="text-[hsl(38,31%,44%)]" />
-                                    <span className="text-[hsl(38,31%,44%)] text-sm md:text-lg">Naturecuresnaturally1@gmail.com</span>
+                                    <Mail size={24} className="text-email" />
+                                    <span className="text-email text-sm md:text-lg">Naturecuresnaturally1@gmail.com</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <Phone size={24} className="text-[hsl(98,48%,61%)]" />
-                                    <span className="text-[hsl(98,48%,61%)] text-sm md:text-lg">+1 (929) 900 6536</span>
+                                    <Phone size={24} className="text-num" />
+                                    <span className="text-num text-sm md:text-lg">+1 (929) 900 6536</span>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <MapPin size={27} className="text-[hsl(92,14%,39%)]" />
-                                    <span className="text-[hsl(92,14%,39%)] text-sm md:text-lg">Rooted in New York & Derby, CT 🌿</span>
+                                    <MapPin size={27} className="text-location" />
+                                    <span className="text-location text-sm md:text-lg">Rooted in New York & Derby, CT 🌿</span>
                                 </div>
 
                             </div>

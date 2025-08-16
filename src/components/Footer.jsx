@@ -2,16 +2,13 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import logoPng from "@/assets/logo.png";
 
 
-
 export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
     <footer className="mt-12 border-t bg-background brightness-80 relative z-100">
       <div className="container mx-auto px-4 py-10">
-        {/* Top: brand + quick links + contact */}
         <div className="grid gap-8 md:grid-cols-2 items-start">
-          {/* Brand */}
           <div className="space-y-3 relative md:bottom-3">
             <img
               src={logoPng}
@@ -26,7 +23,6 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Quick nav (edit anchors to match your sections) */}
           <nav className="grid grid-cols-2 gap-2 text-sm">
             <a href="#hero" className="hover:text-primary transition-colors">Home</a>
             <a href="#about" className="hover:text-primary transition-colors">About</a>
@@ -35,7 +31,6 @@ export const Footer = () => {
             <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
           </nav>
 
-          {/* Contact / micro-CTA */}
           <div className="space-y-4 text-sm flex flex-col">
             <a href="mailto:hello@naturecuresnaturally.com" className="inline-flex items-center gap-2 hover:text-primary transition-colors">
               <Mail size={16} /> Naturecuresnaturally1@gmail.com

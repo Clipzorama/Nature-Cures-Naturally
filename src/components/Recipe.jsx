@@ -198,7 +198,6 @@ export const RecipeSection = () => {
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
-// subtle scroll-in with scrub
 useGSAP(() => {
   // left card
   gsap.from(leftRef.current, {
@@ -214,7 +213,6 @@ useGSAP(() => {
     },
   });
 
-  // right card (wrap around your motion.div)
   gsap.from(rightRef.current, {
     opacity: 0,
     x: 30,
@@ -261,7 +259,6 @@ useGSAP(() => {
 
         <div ref={containerRef} className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
-            {/* LEFT: fixed image frame (no layout shift) */}
             <div ref={leftRef} className="relative rounded-2xl ring-2 ring-primary bg-background/40 p-4 md:p-6">
                 <div className="relative w-full rounded-xl overflow-hidden mx-auto aspect-square">
                   {dishes.map((d, idx) => (
@@ -276,7 +273,6 @@ useGSAP(() => {
                       ))}
                 </div>
 
-                {/* Controls (frame never moves) */}
                 <div className="mt-4 flex items-center justify-between">
                     <button
                         onClick={prev}
@@ -400,8 +396,8 @@ useGSAP(() => {
               </AnimatePresence>
             </div>                       
         </div>
-
-        {/* Thumbnails (also fixed size to avoid shifting) */}
+        
+        {/* thumbnails */}
         <div className="container mt-10 grid grid-cols-3 sm:grid-cols-5 gap-3">
             {dishes.map((d, idx) => (
             <button

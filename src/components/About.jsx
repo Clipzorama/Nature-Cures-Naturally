@@ -1,5 +1,4 @@
 import Nicole from "@/assets/nicole.webp";
-import Nicole2 from "@/assets/helper.webp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState, useEffect } from "react";
@@ -28,6 +27,7 @@ gsap.registerPlugin(ScrollTrigger);
 // GSAP THE CARD CONCEPT TITLES
 
 export const AboutSection = () => {
+    // For media control
     const isMobile = window.innerWidth <= 767; 
     const isTablet = window.innerWidth <= 1024; 
     const startPointR = isMobile ? "top 60%" : isTablet ? "top 70%" : "top 90%";
@@ -41,8 +41,6 @@ export const AboutSection = () => {
     const headingRef = useRef(null);
     const textRef = useRef(null);
     const imageRef = useRef(null);
-
-    const images = [Nicole, Nicole2]; // put your images here
 
     const healing = [
         {name: "Herbal Remedies", icon: Leaf},

@@ -1,4 +1,3 @@
-// RecipeLearnStrip.jsx
 const PHRASES = [
   "Want To Make This Yourself?",
   "1:1 Cooking Lesson",
@@ -24,7 +23,6 @@ function Run({ items, ariaHidden = false }) {
   );
 }
 
-// accept `active` to pause when off-screen
 export default function RecipeLearnStrip({ active = true }) {
   return (
     <div
