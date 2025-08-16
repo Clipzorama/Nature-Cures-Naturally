@@ -62,7 +62,7 @@ export const AboutSection = () => {
 
     const certification = [
         {name: "IIN Certified Coach", icon: GraduationCap},
-        {name: "Health History", icon: FileText},
+        {name: "CAP Culinary School", icon: FileText},
         {name: "Wellness Journals", icon: NotebookPen},
         {name: "Organic Meal Guides", icon: BookOpenCheck},
         {name: "Depression Studies Certificate", icon: Award},
