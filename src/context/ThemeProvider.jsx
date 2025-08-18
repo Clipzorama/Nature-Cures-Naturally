@@ -12,7 +12,7 @@ export const ThemeProvider = ({children}) => {
             setTheme("light");
             document.documentElement.classList.add("light");
         } else {
-            setTheme("light");
+            setTheme("dark");
             document.documentElement.classList.remove("light");
         }
     }, [])
