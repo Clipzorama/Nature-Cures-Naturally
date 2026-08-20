@@ -35,7 +35,7 @@ export const Footer = () => {
             <a href="mailto:hello@naturecuresnaturally.com" className="inline-flex items-center gap-2 hover:text-primary transition-colors">
               <Mail size={16} /> Naturecuresnaturally1@gmail.com
             </a>
-            <a href="tel:+10000000000" className="inline-flex items-center gap-2 hover:text-primary transition-colors">
+            <a href="tel:+19299006536" className="inline-flex items-center gap-2 hover:text-primary transition-colors">
               <Phone size={16} /> +1 (929) 900-6536
             </a>
             <p className="inline-flex items-center gap-2 text-muted-foreground">

@@ -5,7 +5,7 @@ export const Inspiration = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <section id="inspiration"className="py-32 relative min-h-screen">
+    <section id="inspiration"className="pb-32 relative min-h-screen">
         <h1 className="px-2 md:px-4 text-center text-3xl text-header mb-15 font-bold">
             In Spirit & Inspiration 🕊️
         </h1>

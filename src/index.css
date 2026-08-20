@@ -110,6 +110,7 @@
 
     html {
         @apply scroll-smooth;
+        scroll-padding-top: 5.5rem;
     }
 
     body {
@@ -129,6 +130,102 @@
       100% { transform: translate3d(calc(var(--run-w) * -1), 0, 0); }
     }
 
+}
+
+@layer components {
+  .social-link {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: 4rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 0.85rem;
+    padding: 0.9rem 0.75rem;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 750;
+    letter-spacing: 0.01em;
+    box-shadow: 0 10px 24px rgb(0 0 0 / 0.16);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .social-link::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 20%, rgb(255 255 255 / 0.16) 50%, transparent 80%);
+    content: "";
+    opacity: 0;
+    transform: translateX(-35%);
+    transition: opacity 180ms ease, transform 240ms ease;
+  }
+
+  .social-link:hover {
+    transform: translateY(-2px);
+    border-color: rgb(255 255 255 / 0.38);
+    box-shadow: 0 14px 30px rgb(0 0 0 / 0.24);
+  }
+
+  .social-link:hover::before {
+    opacity: 1;
+    transform: translateX(35%);
+  }
+
+  .social-link:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  .social-link:focus-visible {
+    outline: 3px solid hsl(var(--primary));
+    outline-offset: 3px;
+  }
+
+  .social-link--facebook {
+    background: linear-gradient(135deg, #1877f2, #0b4fba);
+  }
+
+  .social-link--instagram {
+    border-color: transparent;
+    background: linear-gradient(135deg, #833ab4 0%, #c13584 38%, #e1306c 62%, #f77737 82%, #fcaf45 100%);
+  }
+
+  .social-link--instagram:hover {
+    border-color: transparent;
+  }
+
+  .social-link--tiktok {
+    background: #0b0b0f;
+    box-shadow: inset 3px 0 0 rgb(37 244 238 / 0.85), inset -3px 0 0 rgb(254 44 85 / 0.85), 0 10px 24px rgb(0 0 0 / 0.2);
+  }
+
+  .social-link--tiktok:hover {
+    box-shadow: inset 4px 0 0 #25f4ee, inset -4px 0 0 #fe2c55, 0 14px 30px rgb(0 0 0 / 0.28);
+  }
+
+  .social-icon {
+    width: 1.65rem;
+    height: 1.65rem;
+    flex: none;
+  }
+
+  .social-link--tiktok .social-icon {
+    filter: drop-shadow(-1px 0 #25f4ee) drop-shadow(1px 0 #fe2c55);
+  }
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-link,
+  .social-link::before {
+    transition-duration: 0.01ms;
+  }
 }
 
 @utility container {

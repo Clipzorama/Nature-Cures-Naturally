@@ -39,7 +39,7 @@ export const ContactSection = () => {
     });
 }
     return (
-        <section id="contact" className="py-24 relative bg-secondary/30">
+        <section id="contact" className="pb-24 relative bg-secondary/30">
             <div className="px-4">
                 <h2 className="text-4xl font-bold mb-4 text-center text-header">
                     Get In Touch 💌
@@ -52,48 +52,76 @@ export const ContactSection = () => {
                     {/* Left Side */}
                     <div className="space-y-10">
                         {/* 1st Box */}
-                        <div className="relative bg-contact p-8 border border-primary rounded-2xl">
+                        <div className="relative bg-contact p-6 sm:p-8 border border-primary rounded-2xl">
                             <h2 className="text-3xl text-header mb-4 font-extrabold ">Let's Connect</h2>
                             <p className="text-pretty text-md mb-10 text-foreground opacity-80">Whether you're seeking natural solutions, 
                                 nutritional guidance, let's take the next step together.
                             </p>
                             <div className="space-y-6">
-                                <div className="flex items-center space-x-4">
-                                    <Mail size={24} className="text-email" />
-                                    <span className="text-email text-sm md:text-lg">Naturecuresnaturally1@gmail.com</span>
+                                <div className="flex min-w-0 items-start gap-3 sm:items-center sm:gap-4">
+                                    <Mail size={24} className="mt-0.5 shrink-0 text-email sm:mt-0" />
+                                    <span className="min-w-0 break-all text-xs text-email sm:text-sm md:text-base xl:text-lg">Naturecuresnaturally1@gmail.com</span>
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <Phone size={24} className="text-num" />
-                                    <span className="text-num text-sm md:text-lg">+1 (929) 900 6536</span>
+                                <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                                    <Phone size={24} className="shrink-0 text-num" />
+                                    <span className="text-sm text-num md:text-base xl:text-lg">+1 (929) 900 6536</span>
                                 </div>
-                                <div className="flex items-center space-x-4">
-                                    <MapPin size={27} className="text-location" />
-                                    <span className="text-location text-sm md:text-lg">Rooted in New York & Connecticut</span>
+                                <div className="flex min-w-0 items-start gap-3 sm:items-center sm:gap-4">
+                                    <MapPin size={27} className="shrink-0 text-location" />
+                                    <span className="text-sm text-location md:text-base xl:text-lg">Rooted in New York & Connecticut</span>
                                 </div>
 
                             </div>
                         </div>
                         {/* 2nd Box */}
-                        <div className="relative bg-contact p-8 border border-primary rounded-2xl">
-                            <h2 className="text-3xl text-header mb-4 font-extrabold text-center">Follow My Jouney</h2>
-                            {/* div of the links */}
-                            <div className="flex justify-center gap-4">
-                                <a href="https://www.facebook.com/Nicolewynaar1" target="_blank" 
-                                className="relative w-40 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 p-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                                    <svg role="img" className="w-8 h-8 text-white mx-auto" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
-                                </a>
-                                <a href="https://www.linkedin.com/in/nicole-wynaar-465a6b364/" target="_blank" 
-                                className="relative w-40 bg-gradient-to-r from-cyan-600 to-cyan-800 hover:from-cyan-500 hover:to-cyan-700 p-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-cyan-500 mx-auto" fill="currentColor" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-                                        <path d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#FFF" d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z"></path>
+                        <div className="relative bg-contact p-6 sm:p-8 border border-primary rounded-2xl">
+                            <h2 className="text-3xl text-header mb-2 font-extrabold text-center">Follow My Journey</h2>
+                            <p className="mb-6 text-center text-sm text-foreground/70">Fresh recipes, natural living, and everyday wellness.</p>
+                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                                <a
+                                    href="https://www.facebook.com/Nicolewynaar1"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Follow Nature Cures Naturally on Facebook (opens in a new tab)"
+                                    className="social-link social-link--facebook"
+                                >
+                                    <svg aria-hidden="true" className="social-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
                                     </svg>
+                                    <span>Facebook</span>
+                                </a>
+                                <a
+                                    href="https://www.instagram.com/naturecuresnaturally/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Follow Nature Cures Naturally on Instagram (opens in a new tab)"
+                                    className="social-link social-link--instagram"
+                                >
+                                    <svg aria-hidden="true" className="social-icon" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+                                        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+                                        <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+                                    </svg>
+                                    <span>Instagram</span>
+                                </a>
+                                <a
+                                    href="https://www.tiktok.com/@nicole.wynaar22"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Follow Nicole Wynaar on TikTok (opens in a new tab)"
+                                    className="social-link social-link--tiktok"
+                                >
+                                    <svg aria-hidden="true" className="social-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.321 5.562a5.124 5.124 0 0 1-3.414-1.267A5.14 5.14 0 0 1 14.252.718h-3.27v13.653a2.86 2.86 0 1 1-2.86-2.86c.287 0 .563.043.824.122V8.305a6.199 6.199 0 0 0-.824-.055A6.121 6.121 0 1 0 14.243 14.371V7.436a8.358 8.358 0 0 0 5.078 1.702V5.562Z" />
+                                    </svg>
+                                    <span>TikTok</span>
                                 </a>
                             </div>
 
                         </div>
                     </div>
                     {/* Contact Side */}
-                    <div className="relative bg-contact border border-primary rounded-2xl p-7">
+                    <div className="relative bg-contact border border-primary rounded-2xl p-6 sm:p-7">
                         <form onSubmit={handleSubmit}>
                             <h2 className="text-3xl text-header mb-4 font-extrabold text-center text-pretty">Start A Conversation</h2>
                             <p className="text-foreground opacity-80 text-center text-lg mb-8">Fill out the form below and I'll get back to you soon!</p>
