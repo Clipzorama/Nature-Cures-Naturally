@@ -8,12 +8,15 @@ export const LightSwitch = ({ className = "" }) => {
 
     return (
         <button 
+            type="button"
             onClick={toggleTheme} 
-            className={cn("transition-colors duration-300 focus:outline-hidden",
+            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            className={cn("transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 className
             )}
         >
-            {theme === "dark" ? <Moon className="w-6 h-6 text-primary cursor-pointer" /> : <Sun className="w-6 h-6 text-primary cursor-pointer" />}
+            {theme === "dark" ? <Moon aria-hidden="true" className="w-6 h-6 text-primary cursor-pointer" /> : <Sun aria-hidden="true" className="w-6 h-6 text-primary cursor-pointer" />}
             
 
         </button>
