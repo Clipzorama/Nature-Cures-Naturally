@@ -183,6 +183,8 @@ const dishes = [
 
 const padNumber = (number) => String(number).padStart(2, "0");
 
+const recipeHeadingWords = "Food made with memory, care & purpose.".split(" ");
+
 function RecipeImage({ dish, index, reduceMotion }) {
   return (
     <AnimatePresence mode="wait" initial={false}>
@@ -285,6 +287,53 @@ export const RecipeSection = () => {
   const [stripActive, setStripActive] = useState(false);
 
   const dish = dishes[activeIndex];
+  const headerMotion = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.15 } },
+      }
+    : {
+        hidden: {},
+        visible: {},
+      };
+  const headingMotion = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }
+    : {
+        hidden: {},
+        visible: {
+          transition: { delayChildren: 0.08, staggerChildren: 0.065 },
+        },
+      };
+  const headingWordMotion = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }
+    : {
+        hidden: { opacity: 0, y: 34, rotateX: -32 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+        },
+      };
+  const headerCopyMotion = reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }
+    : {
+        hidden: { opacity: 0, y: 18 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { delay: 0.58, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+        },
+      };
 
   const next = useCallback(() => {
     setActiveIndex((current) => (current + 1) % dishes.length);
@@ -363,18 +412,35 @@ export const RecipeSection = () => {
       <div className="recipe-orb recipe-orb--one" aria-hidden="true" />
       <div className="recipe-orb recipe-orb--two" aria-hidden="true" />
 
-      <header className="container recipe-section-header" data-recipe-reveal>
-        <div className="recipe-eyebrow">
-          <span aria-hidden="true" />
-          From my kitchen
-          <span aria-hidden="true" />
-        </div>
-        <h2 id="recipes-title">Food made with memory, care &amp; purpose.</h2>
-        <p>
+      <Motion.header
+        className="container recipe-section-header"
+        variants={headerMotion}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.65 }}
+      >
+        <Motion.h2
+          id="recipes-title"
+          aria-label="Food made with memory, care & purpose."
+          variants={headingMotion}
+        >
+          {recipeHeadingWords.map((word, index) => (
+            <Motion.span
+              key={`${word}-${index}`}
+              className="recipe-heading-word"
+              variants={headingWordMotion}
+              aria-hidden="true"
+            >
+              {word}
+              {index < recipeHeadingWords.length - 1 ? "\u00a0" : ""}
+            </Motion.span>
+          ))}
+        </Motion.h2>
+        <Motion.p variants={headerCopyMotion}>
           Explore colorful, home-cooked recipes inspired by family tradition and the
           everyday goodness of real ingredients.
-        </p>
-      </header>
+        </Motion.p>
+      </Motion.header>
 
       <div className="container" data-recipe-reveal>
         <article className="recipe-showcase">

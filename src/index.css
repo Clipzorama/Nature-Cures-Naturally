@@ -455,6 +455,12 @@ section[id] {
   text-wrap: balance;
 }
 
+.recipe-heading-word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
 .recipe-section-header > p {
   max-width: 42rem;
   margin: 1.35rem auto 0;
