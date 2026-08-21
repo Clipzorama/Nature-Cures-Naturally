@@ -6,7 +6,10 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-12 border-t bg-background brightness-80 relative z-100">
+    <footer
+      data-leaf-boundary
+      className="relative z-10 mt-12 border-t bg-background brightness-80"
+    >
       <div className="container mx-auto px-4 py-10">
         <div className="grid gap-8 md:grid-cols-2 items-start">
           <div className="space-y-3 relative md:bottom-3">

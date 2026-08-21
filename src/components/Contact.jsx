@@ -39,7 +39,7 @@ export const ContactSection = () => {
     });
 }
     return (
-        <section id="contact" className="pb-24 relative bg-secondary/30">
+        <section id="contact" className="py-24 relative bg-secondary/30">
             <div className="px-4">
                 <h2 className="text-4xl font-bold mb-4 text-center text-header">
                     Get In Touch 💌
