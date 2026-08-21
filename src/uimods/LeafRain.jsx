@@ -1,31 +1,61 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 
+const LEAF_PROFILES = {
+  phone: { count: 10, size: 18 },
+  tablet: { count: 16, size: 22 },
+  laptop: { count: 22, size: 25 },
+  desktop: { count: 30, size: 28 },
+};
+
+const getLeafProfile = (width) => {
+  if (width >= 1440) return LEAF_PROFILES.desktop;
+  if (width >= 1024) return LEAF_PROFILES.laptop;
+  if (width >= 640) return LEAF_PROFILES.tablet;
+  return LEAF_PROFILES.phone;
+};
+
 export default function LeafRain({ count }) {
   const containerRef = useRef(null);
-
-  const [leafCount, setLeafCount] = useState(() => {
-    const w = typeof window !== "undefined" ? window.innerWidth : 1200;
-    if (count) return count;
-    if (w >= 1280) return 90;       // desktop / xl
-    if (w >= 768)  return 45;       // tablet
-    return 20;                      // phones
-  });
+  const [profile, setProfile] = useState(LEAF_PROFILES.tablet);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
-    if (count) return; 
-    const onResize = () => {
-      const w = window.innerWidth;
-      const next =
-        w >= 1280 ? 90 :
-        w >= 768  ? 45 :
-                    20;
-      setLeafCount(prev => (prev === next ? prev : next));
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => setReduceMotion(motionQuery.matches);
+
+    updateMotionPreference();
+    motionQuery.addEventListener("change", updateMotionPreference);
+
+    return () => motionQuery.removeEventListener("change", updateMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    let resizeFrame;
+
+    const updateProfile = () => {
+      resizeFrame = undefined;
+      const next = getLeafProfile(window.innerWidth);
+      setProfile((current) =>
+        current.count === next.count && current.size === next.size ? current : next
+      );
     };
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [count]);
+
+    const onResize = () => {
+      if (resizeFrame) return;
+      resizeFrame = window.requestAnimationFrame(updateProfile);
+    };
+
+    updateProfile();
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
+    };
+  }, []);
+
+  const leafCount = Number.isFinite(count) ? Math.max(0, count) : profile.count;
 
   const leaves = useMemo(
     () => Array.from({ length: leafCount }, (_, i) => i),
@@ -33,61 +63,128 @@ export default function LeafRain({ count }) {
   );
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const $leaves = gsap.utils.toArray(".leaf-fall");
+    if (reduceMotion || !containerRef.current) return undefined;
 
-      $leaves.forEach((leaf) => {
-        const startXvw = gsap.utils.random(-10, 110, 1);
-        const endXvw   = startXvw + gsap.utils.random(-10, 10, 0.1);
-        const startYvh = gsap.utils.random(-20, -5, 1);
-        const scale    = gsap.utils.random(0.5, 1.2, 0.01);
-        const rot      = gsap.utils.random(-45, 45, 1);
-        const duration = gsap.utils.random(8, 18, 0.1);
-        const swayDur  = gsap.utils.random(3, 6, 0.1);
+    const container = containerRef.current;
+    const leafElements = gsap.utils.toArray(".leaf-fall", container);
+    const floor = { y: window.innerHeight };
+    let measureFrame;
+    let footerObserver;
 
-        gsap.set(leaf, {
-          x: `${startXvw}vw`,
-          y: `${startYvh}vh`,
-          scale,
-          rotate: rot,
-          opacity: gsap.utils.random(0.55, 0.95, 0.01),
-        });
+    const measureFloor = () => {
+      measureFrame = undefined;
+      const footer = document.querySelector("[data-leaf-boundary]");
 
-        gsap.to(leaf, {
-          y: "110vh",
-          rotate: `+=${gsap.utils.random(-90, 90, 1)}`,
-          duration,
-          ease: "none",
-          repeat: -1,
-          delay: gsap.utils.random(0, 12, 0.1),
-          onRepeat() {
-            const newX = gsap.utils.random(-10, 110, 1);
-            gsap.set(leaf, {
-              x: `${newX}vw`,
-              y: `${gsap.utils.random(-20, -5, 1)}vh`,
-              scale: gsap.utils.random(0.5, 1.2, 0.01),
-              opacity: gsap.utils.random(0.55, 0.95, 0.01),
-            });
-          },
-        });
+      if (!footer) {
+        floor.y = window.innerHeight;
+        return;
+      }
 
-        gsap.to(leaf, {
-          x: `${endXvw}vw`,
-          duration: swayDur,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
+      const footerRect = footer.getBoundingClientRect();
+      const footerIsVisible =
+        footerRect.top < window.innerHeight && footerRect.bottom > 0;
+
+      floor.y = footerIsVisible
+        ? Math.max(0, Math.min(window.innerHeight, footerRect.top))
+        : window.innerHeight;
+    };
+
+    const scheduleFloorMeasurement = () => {
+      if (measureFrame) return;
+      measureFrame = window.requestAnimationFrame(measureFloor);
+    };
+
+    const resetLeaf = (leafState, initial = false) => {
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      leafState.baseX = gsap.utils.random(-profile.size, viewportWidth - profile.size * 0.4);
+      leafState.y = initial
+        ? gsap.utils.random(-viewportHeight, Math.max(-profile.size, floor.y - profile.size))
+        : gsap.utils.random(-140, -profile.size);
+      leafState.scale = gsap.utils.random(0.62, 1.12, 0.01);
+      leafState.speed = gsap.utils.random(0.72, 1.48, 0.01);
+      leafState.sway = gsap.utils.random(12, 38, 0.1);
+      leafState.swaySpeed = gsap.utils.random(0.8, 1.8, 0.01);
+      leafState.phase = gsap.utils.random(0, Math.PI * 2, 0.01);
+      leafState.rotation = gsap.utils.random(-55, 55, 0.1);
+      leafState.rotationSpeed = gsap.utils.random(-0.34, 0.34, 0.01);
+      leafState.opacity = gsap.utils.random(0.32, 0.58, 0.01);
+      leafState.restUntil = 0;
+      leafState.landed = false;
+    };
+
+    measureFloor();
+
+    const leafStates = leafElements.map((element) => {
+      const leafState = { element };
+      resetLeaf(leafState, true);
+      return leafState;
+    });
+
+    const renderLeaves = (time) => {
+      const delta = Math.min(gsap.ticker.deltaRatio(60), 2.5);
+
+      leafStates.forEach((leafState) => {
+        const leafHeight = profile.size * leafState.scale;
+        const landingY = Math.max(-leafHeight, floor.y - leafHeight * 0.88);
+
+        if (!leafState.landed) {
+          leafState.y += leafState.speed * delta;
+          leafState.rotation += leafState.rotationSpeed * delta;
+
+          if (leafState.y >= landingY) {
+            leafState.y = landingY;
+            leafState.landed = true;
+            leafState.restUntil = time + gsap.utils.random(0.35, 0.85, 0.01);
+          }
+        } else {
+          leafState.y = landingY;
+          if (time >= leafState.restUntil) {
+            leafState.opacity -= 0.035 * delta;
+            if (leafState.opacity <= 0) resetLeaf(leafState);
+          }
+        }
+
+        const swayX = leafState.baseX + Math.sin(time * leafState.swaySpeed + leafState.phase) * leafState.sway;
+
+        gsap.set(leafState.element, {
+          x: swayX,
+          y: leafState.y,
+          scale: leafState.scale,
+          rotation: leafState.rotation,
+          opacity: Math.max(0, leafState.opacity),
         });
       });
-    }, containerRef);
+    };
 
-    return () => ctx.revert();
-  }, [leafCount]); 
+    window.addEventListener("scroll", scheduleFloorMeasurement, { passive: true });
+    window.addEventListener("resize", scheduleFloorMeasurement, { passive: true });
+
+    const footer = document.querySelector("[data-leaf-boundary]");
+    if (footer && "ResizeObserver" in window) {
+      footerObserver = new ResizeObserver(scheduleFloorMeasurement);
+      footerObserver.observe(footer);
+    }
+
+    gsap.ticker.add(renderLeaves);
+
+    return () => {
+      gsap.ticker.remove(renderLeaves);
+      window.removeEventListener("scroll", scheduleFloorMeasurement);
+      window.removeEventListener("resize", scheduleFloorMeasurement);
+      footerObserver?.disconnect();
+      if (measureFrame) window.cancelAnimationFrame(measureFrame);
+      gsap.set(leafElements, { clearProps: "transform,opacity" });
+    };
+  }, [leafCount, profile.size, reduceMotion]);
+
+  if (reduceMotion || leafCount === 0) return null;
 
   return (
     <div
       ref={containerRef}
-      aria-hidden
+      aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
       style={{ contain: "strict" }}
     >
@@ -102,8 +199,8 @@ export default function LeafRain({ count }) {
           key={i}
           className="leaf-fall"
           viewBox="0 0 1024 1024"
-          width={window.innerWidth < 768 ? 18 : 28}   
-          height={window.innerWidth < 768 ? 18 : 28}
+          width={profile.size}
+          height={profile.size}
           style={{
             position: "absolute",
             color: "rgba(63, 174, 109, 0.7)",
