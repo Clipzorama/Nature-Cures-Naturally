@@ -364,6 +364,8 @@ section[id] {
 
 /* Editorial recipe collection */
 .recipe-section {
+  --recipe-wall-offset: 8rem;
+
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -372,7 +374,7 @@ section[id] {
 
 .recipe-section::before {
   position: absolute;
-  inset: 8rem 0 auto;
+  inset: var(--recipe-wall-offset) 0 auto;
   z-index: -2;
   height: 48rem;
   background:
@@ -1128,6 +1130,8 @@ html.light .recipe-filmstrip > button.is-active {
 
 @media (max-width: 639px) {
   .recipe-section {
+    --recipe-wall-offset: 4rem;
+
     padding-top: 5.5rem;
   }
 
