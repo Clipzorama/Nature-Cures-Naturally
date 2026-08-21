@@ -2,13 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from '@/pages/Home'
 import NotFound from "@/pages/NotFound";
 import { ThemeProvider } from "@/context/ThemeProvider";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Loader } from "@/components/Loader";
 import { Toaster } from "@/components/popup/toaster"
 
-const MIN_LOADER_TIME = 1250;
+const MIN_LOADER_TIME = 2000;
 const MAX_LOADER_TIME = 5000;
-const LOADER_EXIT_TIME = 480;
+const LOADER_EXIT_FALLBACK = 700;
+const REDUCED_MOTION_EXIT_FALLBACK = 100;
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
     const startedAt = performance.now();
     let hasStartedExit = false;
     let minimumTimer;
-    let exitTimer;
+    let exitFallbackTimer;
 
     const finishLoading = () => {
       if (hasStartedExit) return;
@@ -30,9 +31,9 @@ function App() {
       minimumTimer = window.setTimeout(() => {
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         setLoaderPhase("exiting");
-        exitTimer = window.setTimeout(
+        exitFallbackTimer = window.setTimeout(
           () => setLoaderPhase("ready"),
-          prefersReducedMotion ? 0 : LOADER_EXIT_TIME
+          prefersReducedMotion ? REDUCED_MOTION_EXIT_FALLBACK : LOADER_EXIT_FALLBACK
         );
       }, remainingMinimum);
     };
@@ -49,28 +50,55 @@ function App() {
       window.removeEventListener("load", finishLoading);
       window.clearTimeout(fallbackTimer);
       window.clearTimeout(minimumTimer);
-      window.clearTimeout(exitTimer);
+      window.clearTimeout(exitFallbackTimer);
     };
   }, []);
 
+  const isLoaderActive = loaderPhase !== "ready";
+
+  useEffect(() => {
+    if (!isLoaderActive) return undefined;
+
+    document.documentElement.classList.add("is-loader-active");
+    document.body.classList.add("is-loader-active");
+
+    return () => {
+      document.documentElement.classList.remove("is-loader-active");
+      document.body.classList.remove("is-loader-active");
+    };
+  }, [isLoaderActive]);
+
+  const completeLoaderExit = useCallback(() => {
+    setLoaderPhase((currentPhase) => currentPhase === "exiting" ? "ready" : currentPhase);
+  }, []);
 
   return (
     
     <ThemeProvider>
-      {loaderPhase !== "ready" ? <Loader isExiting={loaderPhase === "exiting"} /> : (
-        <>
+      <div className={`app-shell app-shell--${loaderPhase}`}>
+        <div
+          className="app-content"
+          aria-hidden={isLoaderActive ? "true" : undefined}
+          inert={isLoaderActive}
+        >
           <Toaster />
           <BrowserRouter>
-          {/* Wrapped in routes for all segues */}
-          <Routes>
-            <Route index element={<Home />} />
-            {/* React's version of a 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-        
-        </>
-      )}
+            {/* Wrapped in routes for all segues */}
+            <Routes>
+              <Route index element={<Home />} />
+              {/* React's version of a 404 */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+
+        {isLoaderActive && (
+          <Loader
+            isExiting={loaderPhase === "exiting"}
+            onExitComplete={completeLoaderExit}
+          />
+        )}
+      </div>
         
     </ThemeProvider>
     
