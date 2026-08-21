@@ -1,29 +1,25 @@
-import { useEffect, useState, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Leaf } from "lucide-react";
+import { AnimatePresence, motion as Motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
-
-// Recipe Strip
-
 import RecipeLearnStrip from "@/Effects/RecipeLearnStrip";
 
-
-// images
 import food1 from "@/food/food1.webp";
 import food2 from "@/food/food2.webp";
 import food3 from "@/food/food3.webp";
 import food4 from "@/food/food4.webp";
 import food5 from "@/food/food5.webp";
 
-// The food and its information
+gsap.registerPlugin(ScrollTrigger);
+
 const dishes = [
   {
     id: "food1",
     name: "Ripe Plantain • Boiled Eggs • Salted Fish",
+    shortName: "Plantain & Eggs",
     image: food1,
     intro:
       "Plantain as a rice replacement with clean protein sides. Balanced plate for everyday energy.",
@@ -58,6 +54,7 @@ const dishes = [
   {
     id: "food2",
     name: "Okra & Salted Fish Stew over Basmati",
+    shortName: "Okra & Salted Fish",
     image: food2,
     intro:
       "Nutrient-dense okra stew with salted fish, herbs, and spices served on basmati.",
@@ -89,6 +86,7 @@ const dishes = [
   {
     id: "food3",
     name: "Stew Salmon over Green Pea Basmati + Fresh Tomato",
+    shortName: "Stewed Salmon",
     image: food3,
     intro:
       "Omega-3 rich salmon on green-pea basmati with aromatics and fresh tomato.",
@@ -120,6 +118,7 @@ const dishes = [
   {
     id: "food4",
     name: "Cinnamon Strawberry Iced Tea",
+    shortName: "Strawberry Iced Tea",
     image: food4,
     intro:
       "Cooling green tea with cinnamon, honey, and strawberries; mint garnish.",
@@ -141,13 +140,17 @@ const dishes = [
         benefit:
           "Antioxidants; soothing and antimicrobial; gentler glycemic impact.",
       },
-      { name: "Peppermint (garnish)", benefit: "Cooling aroma; digestion comfort." },
+      {
+        name: "Peppermint (garnish)",
+        benefit: "Cooling aroma; digestion comfort.",
+      },
       { name: "Water", benefit: "Hydration." },
     ],
   },
   {
     id: "food5",
     name: "Butternut Squash & Shrimp Stew over Basmati",
+    shortName: "Squash & Shrimp",
     image: food5,
     intro:
       "Comforting squash stew with juicy shrimp and basmati for a balanced bowl.",
@@ -178,251 +181,280 @@ const dishes = [
   },
 ];
 
-export const RecipeSection = () => {
-  const isMobile = window.innerWidth <= 767; 
-  const isTablet = window.innerWidth <= 1024; 
-  const startPoint = isMobile ? "top 65%" : isTablet ? "top 60%" : "top 75%";
-  const startPoint2 = isMobile ? "top 65%" : isTablet ? "top 60%" : "top 75%";
-  const endPoint = isMobile ? "top 25%" : isTablet ? "top 10%" : "top 30%";
-  
+const padNumber = (number) => String(number).padStart(2, "0");
 
-  gsap.registerPlugin(ScrollTrigger);
+function RecipeImage({ dish, index, reduceMotion }) {
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Motion.div
+        key={dish.id}
+        className="recipe-image-wrap"
+        initial={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94, rotate: -1.5 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 1.035, rotate: 1 }}
+        transition={{ duration: reduceMotion ? 0.15 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <img
+          src={dish.image}
+          alt={`${dish.name}, prepared by Nature Cures Naturally`}
+          className={`recipe-hero-image recipe-hero-image--${index + 1}`}
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
+        />
+      </Motion.div>
+    </AnimatePresence>
+  );
+}
 
-  const [i, setI] = useState(0);
-  const dish = dishes[i];
-
-  const next = () => setI((n) => (n + 1) % dishes.length);
-  const prev = () => setI((n) => (n - 1 + dishes.length) % dishes.length);
-
-  const containerRef = useRef(null);
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
-
-useGSAP(() => {
-  // left card
-  gsap.from(leftRef.current, {
-    opacity: 0,
-    x: -30,
-    y: 12,
-    ease: "none",
-    scrollTrigger: {
-      trigger: containerRef.current,
-      start: startPoint,
-      end: endPoint,
-      scrub: true,
-    },
-  });
-
-  gsap.from(rightRef.current, {
-    opacity: 0,
-    x: 30,
-    y: 12,
-    ease: "none",
-    scrollTrigger: {
-      trigger: containerRef.current,
-      start: startPoint2,
-      end: endPoint,
-      scrub: true,
-    },
-  });
-  }, { scope: containerRef, dependencies: [] });
-
-  // arrow keys for the images and the info for it 
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const stripRef = useRef(null);
-  const [stripActive, setStripActive] = useState(false);
-
-  useEffect(() => {
-    const el = stripRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setStripActive(entry.isIntersecting),
-      { threshold: 0.1, rootMargin: "0px 0px 0px 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+function RecipeDetails({ dish, index, reduceMotion }) {
+  const itemMotion = reduceMotion
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: 12 },
+        visible: { opacity: 1, y: 0 },
+      };
 
   return (
-    <section id="recipes" className="pb-32 relative min-h-screen">
-        <h1 className="px-2 md:px-4 text-center text-3xl text-header mb-5 font-bold">
-            A Taste of My Food 🥣
-        </h1>
+    <AnimatePresence mode="wait" initial={false}>
+      <Motion.div
+        key={dish.id}
+        className="recipe-detail-inner"
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: reduceMotion ? 0 : 0.055 },
+          },
+        }}
+      >
+        <Motion.div variants={itemMotion} className="recipe-detail-kicker">
+          <span>Recipe {padNumber(index + 1)}</span>
+          <span className="recipe-kicker-rule" aria-hidden="true" />
+          <span>Homemade nourishment</span>
+        </Motion.div>
 
-        <div ref={containerRef} className="container grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <Motion.h3 variants={itemMotion} className="recipe-title">
+          {dish.name}
+        </Motion.h3>
 
-            <div ref={leftRef} className="relative rounded-2xl ring-2 ring-primary bg-background/40 p-4 md:p-6">
-                <div className="relative w-full rounded-xl overflow-hidden mx-auto aspect-square">
-                  {dishes.map((d, idx) => (
-                  <img
-                      key={d.id}
-                      src={d.image}
-                      alt={d.name}
-                      className={`absolute top-1/2 left-1/2 w-[500px] h-[500px] object-contain drop-shadow-xl transition-opacity duration-300 -translate-x-1/2 -translate-y-1/2 ${
-                      idx === i ? "opacity-100" : "opacity-0"
-                      }`}
-                      loading={idx === i ? "eager" : "lazy"}/>
-                      ))}
-                </div>
+        <Motion.p variants={itemMotion} className="recipe-intro">
+          {dish.intro}
+        </Motion.p>
 
-                <div className="mt-4 flex items-center justify-between">
-                    <button
-                        onClick={prev}
-                        className="rounded-xl border-2 border-primary bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
-                        aria-label="Previous recipe"
-                        >
-                        <div className="flex items-center gap-1 cursor-pointer">
-                            <ChevronLeft size={18} />
-                            Prev
-                        </div>
-                    </button>
-                    <span className="text-sm text-primary font-bold">
-                        {i + 1} / {dishes.length}
-                    </span>
-                    <button
-                        onClick={next}
-                        className="rounded-xl border-2 border-primary bg-background/70 px-3 py-2 hover:bg-button transition-colors duration-300 text-primary"
-                        aria-label="Next recipe">
-                        <div className="flex items-center gap-1 cursor-pointer">
-                            Next <ChevronRight size={18} />
-                        </div>
-                    </button>
-                </div>
+        <Motion.ul variants={itemMotion} className="recipe-tags" aria-label="Wellness benefits">
+          {dish.tags.map((tag) => (
+            <li key={tag}>
+              <Leaf size={13} strokeWidth={1.8} aria-hidden="true" />
+              {tag}
+            </li>
+          ))}
+        </Motion.ul>
+
+        <Motion.div variants={itemMotion} className="recipe-ingredients-heading">
+          <p>Ingredients &amp; benefits</p>
+          <span>{padNumber(dish.ingredients.length)} elements</span>
+        </Motion.div>
+
+        <Motion.ol variants={itemMotion} className="recipe-ingredients">
+          {dish.ingredients.map((ingredient, ingredientIndex) => (
+            <li key={ingredient.name}>
+              <span className="recipe-ingredient-number" aria-hidden="true">
+                {padNumber(ingredientIndex + 1)}
+              </span>
+              <div>
+                <p>{ingredient.name}</p>
+                <span>{ingredient.benefit}</span>
+              </div>
+            </li>
+          ))}
+        </Motion.ol>
+      </Motion.div>
+    </AnimatePresence>
+  );
+}
+
+export const RecipeSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+  const stripRef = useRef(null);
+  const touchStartX = useRef(null);
+  const [stripActive, setStripActive] = useState(false);
+
+  const dish = dishes[activeIndex];
+
+  const next = useCallback(() => {
+    setActiveIndex((current) => (current + 1) % dishes.length);
+  }, []);
+
+  const previous = useCallback(() => {
+    setActiveIndex((current) => (current - 1 + dishes.length) % dishes.length);
+  }, []);
+
+  useGSAP(
+    () => {
+      if (reduceMotion) return;
+
+      const revealTargets = sectionRef.current.querySelectorAll("[data-recipe-reveal]");
+      gsap.from(revealTargets, {
+        opacity: 0,
+        y: 36,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 72%",
+          once: true,
+        },
+      });
+    },
+    { scope: sectionRef, dependencies: [reduceMotion] },
+  );
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      const target = event.target;
+      const isTyping =
+        target instanceof HTMLElement &&
+        (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+
+      if (isTyping) return;
+      if (event.key === "ArrowRight") next();
+      if (event.key === "ArrowLeft") previous();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [next, previous]);
+
+  useEffect(() => {
+    const element = stripRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setStripActive(entry.isIntersecting),
+      { threshold: 0.1 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+    const distance = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+
+    if (Math.abs(distance) < 55) return;
+    if (distance < 0) next();
+    else previous();
+  };
+
+  return (
+    <section ref={sectionRef} id="recipes" className="recipe-section" aria-labelledby="recipes-title">
+      <div className="recipe-orb recipe-orb--one" aria-hidden="true" />
+      <div className="recipe-orb recipe-orb--two" aria-hidden="true" />
+
+      <header className="container recipe-section-header" data-recipe-reveal>
+        <div className="recipe-eyebrow">
+          <span aria-hidden="true" />
+          From my kitchen
+          <span aria-hidden="true" />
+        </div>
+        <h2 id="recipes-title">Food made with memory, care &amp; purpose.</h2>
+        <p>
+          Explore colorful, home-cooked recipes inspired by family tradition and the
+          everyday goodness of real ingredients.
+        </p>
+      </header>
+
+      <div className="container" data-recipe-reveal>
+        <article className="recipe-showcase">
+          <div
+            className="recipe-stage"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <span className="recipe-watermark" aria-hidden="true">
+              {padNumber(activeIndex + 1)}
+            </span>
+            <span className="recipe-botanical recipe-botanical--left" aria-hidden="true" />
+            <span className="recipe-botanical recipe-botanical--right" aria-hidden="true" />
+            <span className="recipe-plate-shadow" aria-hidden="true" />
+
+            <RecipeImage dish={dish} index={activeIndex} reduceMotion={reduceMotion} />
+
+            <div className="recipe-navigation">
+              <button type="button" onClick={previous} aria-label="View previous recipe">
+                <ArrowLeft size={19} aria-hidden="true" />
+              </button>
+
+              <div className="recipe-progress-wrap">
+                <span className="recipe-count">
+                  <strong>{padNumber(activeIndex + 1)}</strong>
+                  <span aria-hidden="true">/</span>
+                  <span>{padNumber(dishes.length)}</span>
+                </span>
+                <span className="recipe-progress" aria-hidden="true">
+                  <Motion.span
+                    animate={{ scaleX: (activeIndex + 1) / dishes.length }}
+                    transition={{ duration: reduceMotion ? 0 : 0.35, ease: "easeOut" }}
+                  />
+                </span>
+              </div>
+
+              <button type="button" onClick={next} aria-label="View next recipe">
+                <ArrowRight size={19} aria-hidden="true" />
+              </button>
             </div>
+          </div>
 
-            <div ref={rightRef} className="flex h-full" style={{ willChange: "opacity" }}>          
-              {/* Right Side */}
-              <AnimatePresence mode="wait">
-                  <motion.div
-                      key={dish.id} 
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="flex flex-col rounded-2xl ring-2 ring-primary bg-background/30 p-6 md:p-8">
-                      <motion.h2
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.25, delay: 0.05 }}
-                          className="text-xl md:text-2xl font-bold text-primary text-pretty"
-                          >
-                          {dish.name}
-                      </motion.h2>
+          <div className="recipe-detail-panel" aria-live="polite">
+            <RecipeDetails dish={dish} index={activeIndex} reduceMotion={reduceMotion} />
+          </div>
+        </article>
+      </div>
 
-                      <motion.p
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.25, delay: 0.1 }}
-                          className="mt-3 text-foreground/80 text-md md:text-lg text-pretty "
-                          >
-                          {dish.intro}
-                      </motion.p>
-
-                          {/* Tags */}
-                      <motion.div
-                          initial="hidden"
-                          animate="show"
-                          variants={{
-                              hidden: { opacity: 0, y: 6 },
-                              show: { opacity: 1, y: 0, transition: { staggerChildren: 0.05, delayChildren: 0.12 } },
-                          }}
-                          className="mt-4 flex flex-wrap gap-2"
-                          >
-                          {dish.tags.map((t) => (
-                              <motion.span
-                              key={t}
-                              variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                              className="inline-flex items-center rounded-full border border-primary bg-button px-3 py-1 text-xs md:text-1xl text-white"
-                              >
-                              {t}
-                              </motion.span>
-                          ))}
-                      </motion.div>
-
-                          {/* Ingredients & benefits */}
-                      <div className="mt-6">
-                          <motion.h3
-                              initial={{ opacity: 0, y: 6 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.25, delay: 0.18 }}
-                              className="font-semibold text-foreground mb-3">
-                              Ingredients & Benefits
-                          </motion.h3>
-
-                          <motion.ul
-                              initial="hidden"
-                              animate="show"
-                              variants={{
-                              hidden: { opacity: 0 },
-                              show: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.2 } },
-                              }}
-                              className="space-y-3">
-                              {dish.ingredients.map((ing) => (
-                              <motion.li
-                                  key={ing.name}
-                                  variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
-                                  className="flex gap-3">
-                                    {/* bullet */}
-                                  <div className="mt-2 w-2.5 h-2.5 rounded-full bg-primary" />
-                                  <div>
-                                    <p className="font-sm text-foreground">{ing.name}</p>
-                                    <p className="text-xs text-foreground/70">{ing.benefit}</p>
-                                  </div>
-                              </motion.li>
-                              ))}
-                          </motion.ul>
-                      </div>
-
-                      <motion.div
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.25, delay: 0.28 }}
-                          className="mt-auto pt-6 flex gap-3">
-                          <button
-                              onClick={next}
-                              className="rounded-xl text-primary border-2 border-primary px-4 py-2 text-sm hover:bg-button transition-colors duration-300 cursor-pointer">
-                              Next Recipe →
-                          </button>
-                      </motion.div>
-                  </motion.div>
-              </AnimatePresence>
-            </div>                       
+      <nav className="container recipe-filmstrip-shell" aria-label="Choose a recipe" data-recipe-reveal>
+        <div className="recipe-filmstrip" role="tablist" aria-label="Recipe collection">
+          {dishes.map((item, index) => {
+            const selected = activeIndex === index;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                aria-label={`View recipe ${index + 1}: ${item.name}`}
+                tabIndex={selected ? 0 : -1}
+                className={selected ? "is-active" : ""}
+                onClick={() => setActiveIndex(index)}
+              >
+                <span className="recipe-filmstrip-image">
+                  <img src={item.image} alt="" loading="lazy" decoding="async" />
+                </span>
+                <span className="recipe-filmstrip-copy">
+                  <small>Recipe {padNumber(index + 1)}</small>
+                  <strong>{item.shortName}</strong>
+                </span>
+                <span className="recipe-filmstrip-marker" aria-hidden="true" />
+              </button>
+            );
+          })}
         </div>
-        
-        {/* thumbnails */}
-        <div className="container mt-10 grid grid-cols-3 sm:grid-cols-5 gap-3">
-            {dishes.map((d, idx) => (
-            <button
-                key={d.id}
-                onClick={() => setI(idx)}
-                className={`rounded-xl border-2 border-primary bg-background/30 p-2 hover:border-button transition-colors duration-300 cursor-pointer ${
-                idx === i ? "border-none ring-2 ring-button" : ""
-                }`}
-                aria-label={`View ${d.name}`}
-                title={d.name}>
-                <div className="relative w-full h-24">
-                <img
-                    src={d.image}
-                    alt={d.name}
-                    className="absolute inset-0 w-full h-full object-contain"
-                    loading="lazy"/>
-                </div>
-            </button>
-            ))}
-        </div>
+      </nav>
 
-        {/* Only animates when visible */}
-        <div ref={stripRef}>
-          <RecipeLearnStrip active={stripActive} />
-        </div>
+      <div ref={stripRef} className="recipe-learn-wrap" data-recipe-reveal>
+        <RecipeLearnStrip active={stripActive && !reduceMotion} />
+      </div>
     </section>
   );
 };

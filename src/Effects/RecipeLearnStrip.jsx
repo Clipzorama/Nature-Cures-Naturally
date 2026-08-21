@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-
+import React, { useEffect, useRef } from "react";
+import { Leaf } from "lucide-react";
 
 const PHRASES = [
   "Want To Make This Yourself?",
@@ -13,13 +13,13 @@ const PHRASES = [
 
 const Run = React.forwardRef(function Run({ items, ariaHidden = false }, ref) {
   return (
-    <div ref={ref} aria-hidden={ariaHidden} className="flex flex-none items-center gap-10">
+    <div ref={ref} aria-hidden={ariaHidden} className="recipe-marquee-run">
       {items.map((t, i) => (
-        <div key={i} className="flex flex-none items-center gap-10">
-          <span className="whitespace-nowrap text-lg md:text-2xl font-medium text-foreground/90 tracking-wide px-8">
-            {t}
+        <div key={i} className="recipe-marquee-item">
+          <span>{t}</span>
+          <span className="recipe-marquee-leaf" aria-hidden="true">
+            <Leaf size={17} strokeWidth={1.5} />
           </span>
-          <span className="flex-none opacity-60 select-none text-2xl md:text-3xl">♦️</span>
         </div>
       ))}
     </div>
@@ -29,14 +29,12 @@ const Run = React.forwardRef(function Run({ items, ariaHidden = false }, ref) {
 export default function RecipeLearnStrip({ active = true }) {
   const runRef = useRef(null);
   const trackRef = useRef(null);
-  const [runW, setRunW] = useState(0);
 
   useEffect(() => {
     if (!runRef.current) return;
 
     const measure = () => {
       const w = runRef.current.offsetWidth || 0;
-      setRunW(w);
       if (trackRef.current) {
         trackRef.current.style.setProperty("--run-w", `${w}px`);
         trackRef.current.style.width = `${w * 2}px`; 
@@ -55,17 +53,21 @@ export default function RecipeLearnStrip({ active = true }) {
   }, []);
 
   return (
-    <div className="mt-20 border-t-2 border-b-2 border-primary bg-background/70 overflow-hidden">
-      <div
-        ref={trackRef}
-        className={`
-          marquee-track flex whitespace-nowrap py-4 px-10
-          ${active ? "marquee-play-dyn" : "marquee-pause-dyn"}
-        `}
-      >
-        <Run ref={runRef} items={PHRASES} />
-        <Run items={PHRASES} ariaHidden />
+    <aside className="recipe-marquee" aria-label="Private cooking lesson invitation">
+      <div className="recipe-marquee-label">
+        <span>Cook with Nicole</span>
       </div>
-    </div>
+      <div className="recipe-marquee-viewport">
+        <div
+          ref={trackRef}
+          className={`recipe-marquee-track ${
+            active ? "marquee-play-dyn" : "marquee-pause-dyn"
+          }`}
+        >
+          <Run ref={runRef} items={PHRASES} />
+          <Run items={PHRASES} ariaHidden />
+        </div>
+      </div>
+    </aside>
   );
 }
