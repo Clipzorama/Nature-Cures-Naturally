@@ -1,9 +1,22 @@
 import "@/uimods/loader.css";
 import logoPng from "@/assets/logo.png";
 
-export const Loader = ({ isExiting = false }) => {
+export const Loader = ({ isExiting = false, onExitComplete }) => {
+  const handleTransitionEnd = (event) => {
+    if (
+      isExiting &&
+      event.target === event.currentTarget &&
+      event.propertyName === "opacity"
+    ) {
+      onExitComplete?.();
+    }
+  };
+
   return (
-    <div className={`site-loader${isExiting ? " site-loader--exiting" : ""}`}>
+    <div
+      className={`site-loader${isExiting ? " site-loader--exiting" : ""}`}
+      onTransitionEnd={handleTransitionEnd}
+    >
       <div className="site-loader__ambient" aria-hidden="true" />
       <div className="site-loader__wash" aria-hidden="true" />
 
